@@ -1,6 +1,7 @@
-import { Leaf, Phone, Mail, MapPin, MessageCircle } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import { Logo } from "@/components/site/Logo";
 import { clinic, services } from "@/data/clinic";
 
 export function SiteFooter() {
@@ -8,12 +9,7 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-border bg-card">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-2xl bg-brand-tint text-brand">
-              <Leaf className="size-5" aria-hidden />
-            </span>
-            <span className="font-display text-lg font-semibold">{clinic.name}</span>
-          </div>
+          <Logo asLink={false} />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
             A calm, evidence-informed naturopathy practice led by {clinic.doctor} — helping you heal
             naturally through food, movement, breath and rest.

@@ -40,7 +40,12 @@ export default function Contact() {
               href: clinic.whatsapp,
             },
             { icon: Mail, label: "Email", value: clinic.email, href: `mailto:${clinic.email}` },
-            { icon: MapPin, label: "Clinic", value: "OM Nagar, Kolar Road, Bhopal", href: undefined },
+            {
+              icon: MapPin,
+              label: "Clinic",
+              value: "OM Nagar, Kolar Road, Bhopal",
+              href: undefined,
+            },
           ].map((c, i) => (
             <Reveal key={c.label} delay={i * 80}>
               <article className="card-lift h-full rounded-3xl border border-border bg-card p-7 shadow-soft">

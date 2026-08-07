@@ -1,5 +1,4 @@
-import
-{
+import {
   Activity,
   Brain,
   Droplets,

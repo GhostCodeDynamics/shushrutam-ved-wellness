@@ -66,7 +66,7 @@ export default function Home() {
           aria-hidden
           className="pointer-events-none absolute -bottom-52 -left-40 size-[30rem] rounded-full bg-gold-soft blur-3xl"
         />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pt-14 pb-20 lg:grid-cols-2 lg:pt-24 lg:pb-28">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-14 px-6 pt-5 pb-20 lg:grid-cols-2 lg:pt-10 lg:pb-28">
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-card px-4 py-1.5 text-xs font-medium tracking-wide text-brand shadow-soft">
               <span className="size-1.5 rounded-full bg-secondary" />
@@ -107,7 +107,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={120} className="relative">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+            <div className="relative mx-auto max-w-sm lg:max-w-[26rem]">
               <div className="overflow-hidden rounded-[2.5rem] border border-border bg-card shadow-lift">
                 <img
                   src={doctorHero}
@@ -117,7 +117,7 @@ export default function Home() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 left-4 rounded-3xl border border-border bg-card/95 px-6 py-4 shadow-soft backdrop-blur sm:left-8">
+              <div className="absolute -bottom-6 left-4 rounded-3xl border border-border bg-card/95 px-6 py-2.5 shadow-soft backdrop-blur sm:left-8">
                 <p className="font-display text-base font-semibold">{clinic.doctor}</p>
                 <p className="mt-0.5 text-xs text-muted-foreground">
                   {clinic.qualification} · Naturopathy & Lifestyle Medicine

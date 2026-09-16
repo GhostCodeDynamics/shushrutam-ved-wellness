@@ -7,11 +7,11 @@ const BRAND_TAGLINE = "Natural Healing • Lifestyle Wellness";
 
 const SIZES = {
   default: {
-    icon: "h-20 w-20", // ya h-18 w-18 agar aur compact chahiye
-    name: "text-[1.5rem] md:text-[1.15rem]",
+    icon: "h-12 w-12 md:h-14 md:w-14",
+    name: "text-[1.05rem] md:text-xl",
   },
   compact: {
-    icon: "h-12 w-12",
+    icon: "h-10 w-10",
     name: "text-sm",
   },
 };
@@ -36,17 +36,17 @@ export function Logo({ className, compact = false, asLink = true }) {
 
       <span className="flex min-w-0 items-center gap-3">
         {/* Vertical Divider */}
-        <span aria-hidden className="h-16 min-w-0.5 shrink-0 rounded-full bg-brand/20" />
+        <span aria-hidden className="h-11 min-w-0.5 shrink-0 rounded-full bg-brand/20" />
 
         {/* Text */}
         <span className="flex min-w-0 flex-col justify-center">
-          <span
-            className={cn("truncate font-display font-bold leading-tight text-brand", nameSize)}
-          >
+          <span className={cn("truncate font-display leading-tight text-ink", nameSize)}>
             {clinic.name}
           </span>
 
-          <span className="mt-0.5 text-[0.75rem] text-brand/80">{BRAND_TAGLINE}</span>
+          <span className="mt-0.5 text-[0.68rem] font-semibold tracking-[0.14em] text-brand uppercase">
+            {BRAND_TAGLINE}
+          </span>
 
           <span className="text-[0.65rem] text-muted-foreground">by {clinic.doctor}</span>
         </span>

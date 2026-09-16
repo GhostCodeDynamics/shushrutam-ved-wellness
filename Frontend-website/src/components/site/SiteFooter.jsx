@@ -19,9 +19,7 @@ export function SiteFooter() {
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-8 md:pt-20">
         <div className="grid gap-12 lg:grid-cols-[1.2fr_0.7fr_0.7fr_1fr]">
           <div>
-            <div className="rounded-3xl bg-cream p-5">
-              <Logo asLink={false} />
-            </div>
+            <Logo asLink={false} tone="light" />
             <p className="mt-6 max-w-xs text-[0.95rem] leading-relaxed text-cream/75">
               A calm, evidence-informed naturopathy practice led by {clinic.doctor} — helping you
               heal naturally through food, movement, breath and rest.
@@ -42,6 +40,7 @@ export function SiteFooter() {
                 { label: "About", to: "/about" },
                 { label: "Services", to: "/services" },
                 { label: "Conditions We Treat", to: "/conditions" },
+                { label: "Wellness Journal", to: "/blog" },
                 { label: "Appointment", to: "/appointment" },
                 { label: "FAQ", to: "/faq" },
                 { label: "Privacy Policy", to: "/privacy" },
@@ -137,7 +136,7 @@ export function SiteFooter() {
             <p>
               Designed &amp; Developed by{" "}
               <a
-                href="https://ghostcodedynamics.github.io/"
+                href="https://ghostcodedynamics.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-cream/80 transition-colors hover:text-gold hover:underline underline-offset-4"

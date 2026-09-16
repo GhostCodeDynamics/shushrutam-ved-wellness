@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 
 import aboutNature from "@/assets/about-nature.jpg";
 import doctorHero from "@/assets/doctor-hero.png";
+import naturopathyConsultation from "@/assets/naturopathy-consultation.jpg.png";
 import { AppointmentForm } from "@/components/site/AppointmentForm";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
@@ -323,31 +324,53 @@ function Programs() {
           description="Every plan begins with listening — then blends nutrition, movement, breathwork and natural therapies into a routine that fits you."
         />
         <div className="mt-14 grid gap-5 lg:grid-cols-[1fr_1.6fr]">
-          <Reveal>
-            <article className="group relative flex h-full min-h-[22rem] flex-col justify-end overflow-hidden rounded-[2rem] border border-cream/15 bg-cream p-8 text-ink shadow-lift">
-              <div
-                aria-hidden
-                className="absolute -top-16 -right-16 size-56 rounded-full bg-brand-tint blur-2xl transition-transform duration-500 group-hover:scale-125"
-              />
-              <span className="absolute top-7 left-8 rounded-full bg-brand px-4 py-1.5 text-[0.7rem] font-bold tracking-[0.18em] text-cream uppercase">
-                Most loved · 01
-              </span>
-              <span className="relative grid size-14 place-items-center rounded-2xl bg-brand text-cream">
-                <featured.icon className="size-6" aria-hidden />
-              </span>
-              <h3 className="relative mt-6 font-display text-3xl leading-tight">
-                {featured.title}
-              </h3>
-              <p className="relative mt-3 leading-relaxed text-muted-foreground">
-                {featured.description} A 45-minute root-cause consultation that maps your history,
-                habits and healing potential — with clear first steps.
-              </p>
-              <Link
-                to="/appointment"
-                className="btn-arrow relative mt-6 inline-flex items-center gap-2 font-bold text-brand"
-              >
-                Start here <ArrowRight className="size-4" />
-              </Link>
+          <Reveal className="h-full">
+            <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-cream/15 bg-cream text-ink shadow-lift">
+              <div className="relative overflow-hidden">
+                <img
+                  src={naturopathyConsultation}
+                  alt="Naturopathy consultation flat-lay — herbal infusion, mortar with fresh tulsi, brass bowl of fennel seeds and consultation notes"
+                  width={1440}
+                  height={1080}
+                  loading="lazy"
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-deep/45 via-transparent to-transparent"
+                />
+                <span className="absolute top-5 left-5 rounded-full bg-brand px-4 py-1.5 text-[0.7rem] font-bold tracking-[0.18em] text-cream uppercase shadow-soft">
+                  Most loved · 01
+                </span>
+                <span className="absolute bottom-4 left-5 flex items-center gap-2 rounded-full bg-cream/95 py-1.5 pr-4 pl-1.5 text-xs font-bold text-ink shadow-soft backdrop-blur">
+                  <span className="grid size-7 place-items-center rounded-full bg-brand text-cream">
+                    <Clock className="size-3.5" aria-hidden />
+                  </span>
+                  45-min deep consult
+                </span>
+              </div>
+              <div className="relative flex flex-1 flex-col p-7 md:p-8">
+                <div
+                  aria-hidden
+                  className="absolute -top-10 -right-10 size-40 rounded-full bg-brand-tint blur-2xl"
+                />
+                <span className="relative grid size-14 place-items-center rounded-2xl bg-brand text-cream">
+                  <featured.icon className="size-6" aria-hidden />
+                </span>
+                <h3 className="relative mt-5 font-display text-3xl leading-tight">
+                  {featured.title}
+                </h3>
+                <p className="relative mt-3 leading-relaxed text-muted-foreground">
+                  {featured.description} A 45-minute root-cause consultation that maps your history,
+                  habits and healing potential — with clear first steps.
+                </p>
+                <Link
+                  to="/appointment"
+                  className="btn-arrow relative mt-6 inline-flex items-center gap-2 font-bold text-brand"
+                >
+                  Start here <ArrowRight className="size-4" />
+                </Link>
+              </div>
             </article>
           </Reveal>
           <div className="grid gap-5 sm:grid-cols-2">

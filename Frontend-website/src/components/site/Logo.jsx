@@ -3,21 +3,20 @@ import { Link } from "react-router-dom";
 import { clinic } from "@/data/clinic";
 import { cn } from "@/lib/utils";
 
-const BRAND_TAGLINE = "Natural Healing • Lifestyle Wellness";
-
 const SIZES = {
   default: {
     icon: "h-12 w-12 md:h-14 md:w-14",
-    name: "text-[1.05rem] md:text-xl",
+    name: "text-[0.95rem] md:text-base",
   },
   compact: {
     icon: "h-10 w-10",
-    name: "text-sm",
+    name: "text-[0.8rem]",
   },
 };
 
-export function Logo({ className, compact = false, asLink = true }) {
+export function Logo({ className, compact = false, asLink = true, tone = "dark" }) {
   const { icon: iconSize, name: nameSize } = SIZES[compact ? "compact" : "default"];
+  const light = tone === "light";
 
   const icon = (
     <img
@@ -34,21 +33,36 @@ export function Logo({ className, compact = false, asLink = true }) {
     <>
       {icon}
 
-      <span className="flex min-w-0 items-center gap-3">
+      <span className="flex min-w-0 items-center gap-2.5">
         {/* Vertical Divider */}
-        <span aria-hidden className="h-11 min-w-0.5 shrink-0 rounded-full bg-brand/20" />
+        <span
+          aria-hidden
+          className={cn(
+            "h-9 min-w-0.5 shrink-0 rounded-full",
+            light ? "bg-cream/25" : "bg-brand/20",
+          )}
+        />
 
         {/* Text */}
         <span className="flex min-w-0 flex-col justify-center">
-          <span className={cn("truncate font-display leading-tight text-ink", nameSize)}>
+          <span
+            className={cn(
+              "truncate font-display leading-tight",
+              light ? "text-cream" : "text-ink",
+              nameSize,
+            )}
+          >
             {clinic.name}
           </span>
 
-          <span className="mt-0.5 text-[0.68rem] font-semibold tracking-[0.14em] text-brand uppercase">
-            {BRAND_TAGLINE}
+          <span
+            className={cn(
+              "truncate text-[0.6rem]",
+              light ? "text-cream/60" : "text-muted-foreground",
+            )}
+          >
+            by {clinic.doctor}
           </span>
-
-          <span className="text-[0.65rem] text-muted-foreground">by {clinic.doctor}</span>
         </span>
       </span>
     </>

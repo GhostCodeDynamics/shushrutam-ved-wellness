@@ -8,6 +8,8 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { Toaster } from "@/components/ui/sonner";
 import About from "@/pages/about";
 import Appointment from "@/pages/appointment";
+import Blog from "@/pages/blog";
+import BlogPost from "@/pages/blogPost";
 import Conditions from "@/pages/conditions";
 import Contact from "@/pages/contact";
 import Faq from "@/pages/faq";
@@ -121,6 +123,8 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/conditions" element={<Conditions />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/appointment" element={<Appointment />} />
             <Route path="/faq" element={<Faq />} />
             <Route path="/contact" element={<Contact />} />

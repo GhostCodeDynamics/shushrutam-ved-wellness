@@ -13,6 +13,7 @@ const nav = [
   { label: "About", to: "/about" },
   { label: "Services", to: "/services" },
   { label: "Conditions", to: "/conditions" },
+  { label: "Blog", to: "/blog" },
   { label: "FAQ", to: "/faq" },
   { label: "Contact", to: "/contact" },
 ];
@@ -79,7 +80,10 @@ export function SiteHeader() {
           <div className="flex items-center gap-2 md:gap-3">
             <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
               {nav.map((item) => {
-                const active = pathname === item.to;
+                const active =
+                  item.to === "/blog"
+                    ? pathname === "/blog" || pathname.startsWith("/blog/")
+                    : pathname === item.to;
                 return (
                   <Link
                     key={item.to}

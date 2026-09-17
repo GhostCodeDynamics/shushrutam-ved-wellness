@@ -55,6 +55,41 @@
   }
 }
 
+@keyframes sway-y {
+  0%,
+  100% {
+    transform: rotate3d(0, 1, 0, -8deg);
+  }
+  50% {
+    transform: rotate3d(0, 1, 0, 12deg);
+  }
+}
+
+@keyframes sway-x {
+  0%,
+  100% {
+    transform: rotate3d(1, 0, 0, 10deg);
+  }
+  50% {
+    transform: rotate3d(1, 0, 0, -8deg);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0) scale(1.02);
+  }
+}
+
+.leaf-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
 /*
  * Premium wellness design tokens.
  * Exact brand palette (hex) mapped to Tailwind utilities:

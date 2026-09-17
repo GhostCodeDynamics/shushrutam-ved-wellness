@@ -1,6 +1,8 @@
+import { Mail, ShieldCheck } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
 import { PageHero } from "@/components/site/PageHero";
+import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
 import { clinic } from "@/data/clinic";
 
@@ -53,25 +55,61 @@ export default function Privacy() {
         description="Confidentiality is central to our practice. This page explains what we collect and how it is protected."
       />
 
-      <section className="mx-auto max-w-3xl px-6 py-20 md:py-24">
-        <div className="space-y-10">
-          {sections.map((s, i) => (
-            <Reveal key={s.title} delay={i * 60}>
-              <h2 className="font-display text-xl font-semibold">{s.title}</h2>
-              <p className="mt-3 leading-relaxed text-muted-foreground">{s.body}</p>
-            </Reveal>
-          ))}
+      <section className="bg-cream/60">
+        <div className="mx-auto max-w-3xl px-6 py-20 md:py-24">
           <Reveal>
-            <h2 className="font-display text-xl font-semibold">Contact</h2>
-            <p className="mt-3 leading-relaxed text-muted-foreground">
-              For any privacy-related question, write to{" "}
-              <a
-                href={`mailto:${clinic.email}`}
-                className="text-brand underline-offset-4 hover:underline"
-              >
-                {clinic.email}
-              </a>{" "}
-              or call {clinic.phone}.
+            <div className="flex items-start gap-4 rounded-[1.6rem] border border-brand/15 bg-brand-tint/60 p-6">
+              <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand text-cream">
+                <ShieldCheck className="size-5" aria-hidden />
+              </span>
+              <div>
+                <p className="font-display text-lg">Our commitment in one line</p>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  Your health information is stored securely, accessed only by your treating
+                  practitioner, and never sold.
+                </p>
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 space-y-10">
+            {sections.map((s, i) => (
+              <Reveal key={s.title} delay={i * 50}>
+                <div className="flex gap-5">
+                  <span className="pt-0.5 font-display text-sm text-muted-foreground/50">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h2 className="font-display text-xl">{s.title}</h2>
+                    <p className="mt-2.5 leading-relaxed text-muted-foreground">{s.body}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+            <Reveal>
+              <div className="flex gap-5 border-t border-border pt-8">
+                <span className="pt-0.5 font-display text-sm text-muted-foreground/50">07</span>
+                <div>
+                  <h2 className="font-display text-xl">Contact</h2>
+                  <p className="mt-2.5 leading-relaxed text-muted-foreground">
+                    For any privacy-related question, write to{" "}
+                    <a
+                      href={`mailto:${clinic.email}`}
+                      className="inline-flex items-center gap-1.5 font-semibold text-brand hover:underline underline-offset-4"
+                    >
+                      <Mail className="size-4" aria-hidden /> {clinic.email}
+                    </a>{" "}
+                    or call {clinic.phone}.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal className="mt-12">
+            <Eyebrow center>Last reviewed</Eyebrow>
+            <p className="mt-3 text-center text-sm text-muted-foreground">
+              This policy was last reviewed in 2026.
             </p>
           </Reveal>
         </div>

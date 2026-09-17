@@ -17,9 +17,10 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 import aboutNature from "@/assets/about-nature.jpg";
-import doctorHero from "@/assets/doctor-hero.png";
-import naturopathyConsultation from "@/assets/naturopathy-consultation.jpg.png";
+import doctorHero from "@/assets/doctor-hero.jpg";
+import naturopathyConsultation from "@/assets/naturopathy-consultation.jpg";
 import { AppointmentForm } from "@/components/site/AppointmentForm";
+import { BotanicalFloat } from "@/components/site/BotanicalFloat";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
 import {
@@ -64,19 +65,7 @@ function Hero() {
         aria-hidden
         className="pointer-events-none absolute bottom-[-12rem] left-[-8rem] size-[26rem] rounded-full bg-sand blur-3xl"
       />
-      <svg
-        aria-hidden
-        viewBox="0 0 300 300"
-        className="pointer-events-none absolute top-16 left-[4%] hidden w-24 text-brand/15 lg:block"
-      >
-        <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <path d="M150 20 C 150 90, 150 180, 150 280" />
-          <path d="M150 70 C 110 60, 80 40, 70 15 C 110 20, 140 40, 150 70" />
-          <path d="M150 120 C 190 110, 220 90, 230 65 C 190 70, 160 90, 150 120" />
-          <path d="M150 175 C 115 165, 90 148, 82 122 C 118 128, 142 148, 150 175" />
-          <path d="M150 225 C 185 215, 210 198, 218 172 C 182 178, 158 198, 150 225" />
-        </g>
-      </svg>
+      <BotanicalFloat />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pt-10 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:pt-16 lg:pb-24">
         <Reveal>

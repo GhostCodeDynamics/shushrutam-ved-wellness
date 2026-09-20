@@ -33,7 +33,7 @@ function getTransporter() {
  * Fire-and-forget send. Never rejects — failures are logged so an email
  * outage can never break an API request.
  */
-async function sendEmail({ to, subject, text, html }) {
+async function sendEmail({ to, subject, text, html, replyTo }) {
   if (!to || !smtpConfigured()) {
     return false;
   }
@@ -41,6 +41,7 @@ async function sendEmail({ to, subject, text, html }) {
     const info = await getTransporter().sendMail({
       from: env.smtp.from,
       to,
+      replyTo,
       subject,
       text,
       html,
@@ -54,10 +55,11 @@ async function sendEmail({ to, subject, text, html }) {
 
 export function notifyNewAppointment(appointment) {
   const clinic = newAppointmentToClinic(appointment);
+  const patient = appointment.email ? newAppointmentToPatient(appointment) : null;
   return Promise.all([
-    sendEmail({ ...clinic, to: env.smtp.to }),
-    appointment.email
-      ? sendEmail({ ...newAppointmentToPatient(appointment), to: appointment.email })
+    sendEmail({ ...clinic, to: env.smtp.to, replyTo: appointment.email || undefined }),
+    patient
+      ? sendEmail({ ...patient, to: appointment.email, replyTo: env.smtp.to })
       : Promise.resolve(false),
   ]);
 }
@@ -66,5 +68,9 @@ export function notifyAppointmentStatusChanged(appointment) {
   if (!appointment.email) {
     return Promise.resolve(false);
   }
-  return sendEmail({ ...statusChangedToPatient(appointment), to: appointment.email });
+  return sendEmail({
+    ...statusChangedToPatient(appointment),
+    to: appointment.email,
+    replyTo: env.smtp.to,
+  });
 }

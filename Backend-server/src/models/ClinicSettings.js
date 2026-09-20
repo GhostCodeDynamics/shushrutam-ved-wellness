@@ -17,7 +17,7 @@ const hourSlotSchema = new Schema(
 const clinicSettingsSchema = new Schema(
   {
     name: { type: String, required: true, trim: true, maxlength: 120, default: "ShushrutamVed Care" },
-    tagline: { type: String, trim: true, maxlength: 200, default: "Naturopathy & Lifestyle Medicine" },
+    tagline: { type: String, trim: true, maxlength: 200, default: "Where Modern Medicine Meets Natural Healing" },
     doctor: { type: String, trim: true, maxlength: 120, default: "Dr. Aarti Sen" },
     qualification: { type: String, trim: true, maxlength: 200, default: "" },
     experience: { type: String, trim: true, maxlength: 80, default: "" },

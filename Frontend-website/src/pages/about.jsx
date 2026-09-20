@@ -19,7 +19,7 @@ const journey = [
   },
   {
     period: "The clinical practice",
-    text: `${clinic.experience} of naturopathic and lifestyle practice across weight, hormones, digestion and pain.`,
+    text: `${clinic.experience} of holistic and integrative practice across weight, hormones, digestion, pain, stress and oncology nutrition support.`,
     icon: BadgeCheck,
   },
   {
@@ -34,7 +34,7 @@ export default function About() {
     <>
       <Seo
         title="About Dr. Aarti Sen | ShushrutamVed Care"
-        description="Meet Dr. Aarti Sen, M.Sc. Biotechnology with 6+ years in naturopathy, lifestyle medicine, oncology nutrition and wellness at ShushrutamVed Care."
+        description="Meet Dr. Aarti Sen, M.Sc. Biotechnology with 6+ years in holistic and integrative wellness — Ayurveda, naturopathy, nutrition, yoga, Panchakarma, Reiki and oncology nutrition support — at ShushrutamVed Care, Bhopal."
         path="/about"
         jsonLd={[clinicSchema("/about")]}
       />
@@ -64,7 +64,7 @@ export default function About() {
             <div className="absolute -bottom-7 left-1/2 w-[88%] max-w-xs -translate-x-1/2 rounded-2xl border border-border bg-card/95 px-5 py-4 shadow-lift backdrop-blur sm:left-6 sm:translate-x-0">
               <p className="font-display text-lg leading-tight">{clinic.doctor}</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                {clinic.qualification} · Naturopathy & Lifestyle Medicine
+                {clinic.qualification} · {clinic.practice}
               </p>
               <p className="mt-3 flex items-center gap-2 border-t border-border pt-3 text-xs font-semibold text-brand">
                 <span className="relative flex size-2">
@@ -90,9 +90,10 @@ export default function About() {
               <div className="mt-7 space-y-4 leading-relaxed text-muted-foreground">
                 <p>
                   Dr. Aarti Sen began in laboratories — molecular research and plant tissue culture
-                  — studying how living systems repair themselves. That curiosity led her to
-                  naturopathy, where the same principle applies at human scale: given the right
-                  conditions, the body restores balance.
+                  — studying how living systems repair themselves. That curiosity led her into
+                  holistic and integrative practice — naturopathy, Ayurveda, clinical nutrition,
+                  yoga and energy therapies such as Reiki — where the same principle applies at
+                  human scale: given the right conditions, the body restores balance.
                 </p>
                 <p>
                   Over {clinic.experience.toLowerCase()} of practice, she has guided working

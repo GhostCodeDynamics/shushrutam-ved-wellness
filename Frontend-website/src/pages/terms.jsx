@@ -16,7 +16,7 @@ const notice = {
 const sections = [
   {
     title: "Use of this website",
-    body: "This website is provided to inform visitors about the naturopathy and lifestyle-medicine services offered by the clinic and to enable appointment enquiries. You may browse openly, but you are responsible for the accuracy of the information you submit through appointment or enquiry forms.",
+    body: "This website is provided to inform visitors about the holistic and lifestyle-medicine services offered by the clinic — including Ayurveda, naturopathy, nutrition and yoga-based programmes — and to enable appointment enquiries. You may browse openly, but you are responsible for the accuracy of the information you submit through appointment or enquiry forms.",
   },
   {
     title: "Information you share",

@@ -24,6 +24,27 @@ function proxyTrust() {
   return raw;
 }
 
+function corsOrigins() {
+  const raw = optional("CORS_ORIGINS", "http://localhost:5173,http://localhost:5174");
+  const result = [];
+  for (const entry of raw.split(",")) {
+    const cleaned = entry.trim().replace(/\/+$/, "");
+    if (!cleaned) continue;
+    if (!result.includes(cleaned)) result.push(cleaned);
+    // Treat http://localhost:PORT and http://127.0.0.1:PORT as equivalent so
+    // visiting via either hostname doesn't trip the origin allowlist.
+    const portMatch = cleaned.match(/^https?:\/\/(localhost|127\.0\.0\.1):(\d+)$/);
+    if (portMatch) {
+      const twin = cleaned.replace(
+        portMatch[1],
+        portMatch[1] === "localhost" ? "127.0.0.1" : "localhost",
+      );
+      if (!result.includes(twin)) result.push(twin);
+    }
+  }
+  return result;
+}
+
 const isProduction = (process.env.NODE_ENV || "development").trim() === "production";
 const isTest = (process.env.NODE_ENV || "development").trim() === "test";
 
@@ -39,10 +60,7 @@ export const env = {
 
   trustProxy: proxyTrust(),
 
-  corsOrigins: optional("CORS_ORIGINS", "http://localhost:5173,http://localhost:5174")
-    .split(",")
-    .map((o) => o.trim())
-    .filter(Boolean),
+  corsOrigins: corsOrigins(),
 
   mongoUri: optional("MONGODB_URI", ""),
 

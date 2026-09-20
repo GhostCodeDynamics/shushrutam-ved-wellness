@@ -1,6 +1,7 @@
 import
   {
     Activity,
+    Apple,
     Brain,
     Droplets,
     Flower2,
@@ -16,7 +17,8 @@ import
 
 export const clinic = {
   name: "ShushrutamVed Care",
-  tagline: "Naturopathy & Lifestyle Medicine",
+  tagline: "Where Modern Medicine Meets Natural Healing",
+  practice: "Holistic & Integrative Wellness",
   doctor: "Dr. Aarti Sen",
   qualification: "M.Sc. Biotechnology",
   experience: "6+ Years",
@@ -39,6 +41,10 @@ export const specializations = [
   "Oncology Nutrition",
   "Naturopathy",
   "Lifestyle Medicine",
+  "Ayurveda",
+  "Yoga & Yogasana",
+  "Reiki",
+  "Panchakarma",
   "Wellness",
 ];
 
@@ -47,6 +53,12 @@ export const services = [
     title: "Naturopathy Consultation",
     description: "A root-cause consultation that maps your history, habits and healing potential.",
     icon: Leaf,
+  },
+  {
+    title: "Oncology Nutrition Support",
+    description:
+      "Personalized nutrition guidance for individuals navigating cancer-related care — always alongside, never instead of, your treating oncologist.",
+    icon: Apple,
   },
   {
     title: "Diet & Lifestyle Counselling",
@@ -152,7 +164,7 @@ export const processSteps = [
 export const trustPoints = [
   {
     title: "6+ Years Experience",
-    description: "Clinical practice rooted in biotechnology research and naturopathic care.",
+    description: "Clinical practice rooted in biotechnology research and integrative wellness care.",
     icon: Stethoscope,
   },
   {
@@ -174,12 +186,16 @@ export const trustPoints = [
 
 export const faqs = [
   {
-    q: "What happens in the first naturopathy consultation?",
+    q: "What happens in the first consultation?",
     a: "We spend around 45 minutes reviewing your health history, current reports, digestion, sleep, stress and daily routine. You leave with clear first steps, not a long list of products.",
   },
   {
     q: "Do I need to stop my existing medication?",
-    a: "Never on your own. Naturopathy and lifestyle medicine work alongside your treating physician. Any change is discussed with you and monitored carefully.",
+    a: "Never on your own. Our holistic care — Ayurveda, naturopathy, nutrition and lifestyle medicine — works alongside your treating physician. Any change is discussed with you and monitored carefully.",
+  },
+  {
+    q: "Do you offer nutrition support for someone going through cancer treatment?",
+    a: "Yes. Our oncology nutrition support offers personalised, evidence-informed nutrition guidance for people navigating cancer-related care. It is a complementary service that always works alongside — never instead of — your treating oncologist and medical team. We do not treat or claim to treat cancer; the focus is nutrition and quality of life within the plan your doctors oversee.",
   },
   {
     q: "How soon will I see results?",

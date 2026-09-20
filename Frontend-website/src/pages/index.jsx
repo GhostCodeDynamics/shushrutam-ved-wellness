@@ -16,7 +16,7 @@ import {
 import { Link } from "react-router-dom";
 
 import aboutNature from "@/assets/about-nature.jpg";
-import doctorHero from "@/assets/doctor-hero.jpg";
+import heroImage from "@/assets/doctor-hero-client.jpg";
 import naturopathyConsultation from "@/assets/naturopathy-consultation.jpg";
 import { AppointmentForm } from "@/components/site/AppointmentForm";
 import { BotanicalFloat } from "@/components/site/BotanicalFloat";
@@ -44,7 +44,7 @@ import { cn } from "@/lib/utils";
 
 const heroStats = [
   { k: "6+", v: "Years of practice" },
-  { k: "12", v: "Wellness programmes" },
+  { k: `${services.length}`, v: "Wellness programmes" },
   { k: "16", v: "Holistic therapies" },
 ];
 
@@ -70,7 +70,7 @@ function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-6 pt-10 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 lg:pt-16 lg:pb-24">
         <Reveal>
-          <Eyebrow>Natural health × Modern science</Eyebrow>
+          <Eyebrow>Where modern medicine meets natural healing</Eyebrow>
           <h1 className="mt-5 max-w-xl font-display text-[2.75rem] leading-[1.04] text-balance text-ink sm:text-6xl lg:text-[4.4rem]">
             Natural healing for{" "}
             <span className="relative inline-block text-brand italic">
@@ -94,7 +94,8 @@ function Hero() {
             life.
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
-            Naturopathy, clinical nutrition and lifestyle medicine — thoughtfully combined by{" "}
+            Harmonious, integrative wellness — Ayurveda, naturopathy, clinical nutrition, yoga
+            therapy, Panchakarma, Reiki and oncology nutrition support, thoughtfully combined by{" "}
             {clinic.doctor} to treat the root cause, not just the symptom. Calm, personalised care
             for modern living.
           </p>
@@ -148,10 +149,10 @@ function Hero() {
             />
             <div className="arch-mask relative overflow-hidden border border-brand/15 bg-card shadow-lift">
               <img
-                src={doctorHero}
-                alt={`${clinic.doctor}, naturopathy and lifestyle medicine consultant`}
-                width={1024}
-                height={1280}
+                src={heroImage}
+                alt={`${clinic.doctor}, holistic and integrative wellness consultant`}
+                width={819}
+                height={1024}
                 fetchPriority="high"
                 className="aspect-[4/5] w-full object-cover"
               />
@@ -164,7 +165,7 @@ function Hero() {
             <div className="absolute -bottom-7 left-1/2 w-[92%] max-w-xs -translate-x-1/2 rounded-2xl border border-border bg-card/95 px-5 py-4 shadow-lift backdrop-blur sm:left-2 sm:translate-x-0">
               <p className="font-display text-lg leading-tight">{clinic.doctor}</p>
               <p className="mt-1 text-xs text-muted-foreground">
-                {clinic.qualification} · Naturopathy & Lifestyle Medicine
+                {clinic.qualification} · {clinic.practice}
               </p>
               <p className="mt-3 flex items-center gap-2 border-t border-border pt-3 text-xs font-semibold text-brand">
                 <span className="relative flex size-2">
@@ -259,9 +260,10 @@ function Approach() {
             </h2>
             <p className="mt-6 leading-relaxed text-pretty text-muted-foreground">
               {clinic.doctor} brings a rare combination to wellness care — a research background in{" "}
-              {clinic.qualification} alongside {clinic.experience} of naturopathic and lifestyle
-              practice. Her work in molecular research, plant tissue culture and oncology nutrition
-              shapes a method that is gentle in approach and rigorous in reasoning.
+              {clinic.qualification} alongside {clinic.experience} of holistic and integrative
+              practice across Ayurveda, naturopathy, clinical nutrition, yoga therapy, Panchakarma
+              and Reiki. Her work in molecular research, plant tissue culture and oncology nutrition
+              support shapes a method that is gentle in approach and rigorous in reasoning.
             </p>
             <p className="mt-4 leading-relaxed text-pretty text-muted-foreground">
               Her mission is simple: help people reclaim health through daily choices — real food,
@@ -400,7 +402,7 @@ function Programs() {
             className="border-cream/30 bg-transparent text-cream hover:bg-cream/10 hover:text-cream"
           >
             <Link to="/services" className="btn-arrow">
-              View all 12 programmes <ArrowRight className="size-4" />
+              View all {services.length} programmes <ArrowRight className="size-4" />
             </Link>
           </Button>
         </Reveal>
@@ -654,8 +656,8 @@ function Cta() {
             Ready to begin <span className="italic">your healing journey?</span>
           </h2>
           <p className="relative mx-auto mt-4 max-w-xl leading-relaxed text-cream/80">
-            Book a consultation and receive a personalised naturopathy and lifestyle plan built
-            entirely around you — your kitchen, your routine, your body.
+            Book a consultation and receive a personalised holistic wellness plan built entirely
+            around you — your kitchen, your routine, your body.
           </p>
           <div className="relative mt-9 flex flex-wrap justify-center gap-3">
             <Button asChild variant="gold" size="pill" className="btn-arrow">
@@ -778,7 +780,7 @@ export default function Home() {
     <>
       <Seo
         title={`${clinic.name} | Natural Healing for a Healthier Life`}
-        description="Premium naturopathy, nutrition and lifestyle medicine with Dr. Aarti Sen. Personalised natural care for weight, thyroid, PCOS, digestion, pain and stress."
+        description="Holistic and integrative wellness with Dr. Aarti Sen in Bhopal — Ayurveda, naturopathy, nutrition, yoga therapy, Panchakarma, Reiki and oncology nutrition support for weight, thyroid, PCOS, digestion, pain and stress."
         path="/"
         jsonLd={[clinicSchema("/"), webSiteSchema()]}
       />

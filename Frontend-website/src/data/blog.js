@@ -118,7 +118,7 @@ export const blogPosts = [
       },
       {
         type: "p",
-        text: "A final, non-negotiable note: naturopathy and lifestyle medicine work alongside your endocrinologist, never instead of them. Medication decisions belong to you and your doctor together — our role is to make the lifestyle foundation so strong that your reports, energy and weight steadily move in the right direction.",
+        text: "A final, non-negotiable note: our nutrition and lifestyle support works alongside your endocrinologist, never instead of them. Medication decisions belong to you and your doctor together — our role is to make the lifestyle foundation so strong that your reports, energy and weight steadily move in the right direction.",
       },
     ],
   },
@@ -126,7 +126,7 @@ export const blogPosts = [
     slug: "acidity-bloating-heal-your-gut-lining",
     title: "Acidity & Bloating: Healing the Gut Lining, Not Just Silencing It",
     excerpt:
-      "Antacids quiet the burn but don't heal the cause. A naturopathic view of acidity, gas and constipation — and the 4-week gut reset we actually use.",
+      "Antacids quiet the burn but don't heal the cause. An integrative view of acidity, gas and constipation — and the 4-week gut reset we actually use.",
     category: "Gut Health",
     date: "9 Jul 2026",
     readTime: "8 min read",
@@ -326,7 +326,7 @@ export const blogPosts = [
       },
       {
         type: "p",
-        text: "And an important boundary: lifestyle tools support everyday stress beautifully, but persistent anxiety, panic, or low mood that interferes with work and relationships deserves professional mental-health care. Naturopathy walks alongside that support — if you're struggling, please reach out to a qualified counsellor or psychiatrist as well as us.",
+        text: "And an important boundary: lifestyle tools support everyday stress beautifully, but persistent anxiety, panic, or low mood that interferes with work and relationships deserves professional mental-health care. Our holistic care walks alongside that support — if you're struggling, please reach out to a qualified counsellor or psychiatrist as well as us.",
       },
     ],
   },

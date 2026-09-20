@@ -45,7 +45,7 @@ export function clinicSchema(path = "/") {
     founder: {
       "@type": "Physician",
       name: clinic.doctor,
-      jobTitle: "Naturopathy & Lifestyle Medicine Practitioner",
+      jobTitle: "Holistic & Integrative Wellness Practitioner",
       medicalSpecialty: "https://schema.org/Preventive",
     },
   };

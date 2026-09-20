@@ -17,7 +17,7 @@ const quickActions = [
   {
     icon: CalendarCheck,
     label: "Book a consultation",
-    message: "Hi, I'd like to book a naturopathy consultation.",
+    message: "Hi, I'd like to book a consultation.",
   },
   {
     icon: Sparkles,

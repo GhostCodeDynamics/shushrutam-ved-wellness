@@ -27,6 +27,9 @@ export function createApp() {
   app.use(
     cors({
       origin(origin, callback) {
+        // Development/test: any origin is fine (localhost, LAN IP for phone
+        // testing, Vite preview, etc.). Production stays strictly allowlisted.
+        if (!env.isProduction) return callback(null, true);
         if (!origin || env.corsOrigins.includes(origin)) {
           return callback(null, true);
         }

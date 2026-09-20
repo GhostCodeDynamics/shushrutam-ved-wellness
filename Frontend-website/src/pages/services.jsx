@@ -16,8 +16,8 @@ export default function Services() {
   return (
     <>
       <Seo
-        title="Naturopathy &amp; Wellness Services | ShushrutamVed Care"
-        description="Naturopathy consultation, diet counselling, yoga therapy, detox, weight, thyroid, diabetes, digestive and women's wellness programmes."
+        title="Holistic &amp; Integrative Wellness Services | ShushrutamVed Care"
+        description="Ayurveda, naturopathy, nutrition counselling, yoga therapy, Panchakarma, Reiki, detox, weight, thyroid, diabetes, digestive, women's wellness and oncology nutrition support programmes."
         path="/services"
         jsonLd={[clinicSchema("/services"), serviceListSchema(services)]}
       />
@@ -25,7 +25,7 @@ export default function Services() {
       <PageHero
         eyebrow="Services"
         title="Wellness programmes, personally written"
-        description="Each programme is shaped around your reports, your routine and your kitchen — combining nutrition, movement, breathwork and natural therapies."
+        description="Each programme is shaped around your reports, your routine and your kitchen — combining nutrition, movement, breathwork and natural therapies with modern medicine where relevant."
       />
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -80,7 +80,7 @@ export default function Services() {
         </Reveal>
 
         <h2 className="mt-20 text-center font-display text-3xl text-balance md:text-[2.6rem]">
-          All twelve programmes
+          All {services.length} programmes
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-center leading-relaxed text-muted-foreground">
           Every plan blends nutrition, movement, breathwork and natural therapies into a routine

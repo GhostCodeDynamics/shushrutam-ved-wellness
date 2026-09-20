@@ -21,7 +21,7 @@ export default function Faq() {
     <>
       <Seo
         title="Frequently Asked Questions | ShushrutamVed Care"
-        description="Answers about naturopathy consultations, timelines, online appointments, diet plans and combining natural care with existing medication."
+        description="Answers about holistic wellness consultations, timelines, online appointments, nutrition and lifestyle plans, and combining natural care with existing medication."
         path="/faq"
         jsonLd={[clinicSchema("/faq"), faqSchema(faqs)]}
       />
@@ -29,7 +29,7 @@ export default function Faq() {
       <PageHero
         eyebrow="FAQ"
         title="Everything you might be wondering"
-        description="Clear answers about consultations, timelines and how naturopathy works alongside conventional care."
+        description="Clear answers about consultations, timelines and how holistic and lifestyle care works alongside conventional medicine."
       />
 
       <section className="mx-auto max-w-4xl px-6 py-16 md:py-24">

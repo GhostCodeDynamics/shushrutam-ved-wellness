@@ -12,7 +12,7 @@ const sections = [
   },
   {
     title: "Not a substitute for medical care",
-    body: "Naturopathy and lifestyle medicine are complementary approaches. They work alongside, and never instead of, the care provided by your physician, endocrinologist, cardiologist, psychiatrist or other qualified specialist. Please do not stop, start or change any medication without consulting your treating doctor.",
+    body: "The holistic and lifestyle medicine services offered by ShushrutamVed Care — including Ayurveda, naturopathy, nutrition, yoga therapy, Panchakarma, Reiki and oncology nutrition support — are complementary approaches. They work alongside, and never instead of, the care provided by your physician, endocrinologist, cardiologist, psychiatrist, oncologist or other qualified specialist. Please do not stop, start or change any medication without consulting your treating doctor.",
   },
   {
     title: "Individual results vary",

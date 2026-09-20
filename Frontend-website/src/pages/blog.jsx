@@ -69,7 +69,7 @@ export default function Blog() {
     <>
       <Seo
         title="Wellness Journal | ShushrutamVed Care"
-        description="Practical naturopathy and lifestyle medicine notes by Dr. Aarti Sen — PCOS, thyroid, gut health, sleep, weight and stress."
+        description="Practical holistic wellness and lifestyle notes by Dr. Aarti Sen — PCOS, thyroid, gut health, sleep, weight and stress."
         path="/blog"
         jsonLd={[clinicSchema("/blog")]}
       />

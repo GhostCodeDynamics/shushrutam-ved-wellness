@@ -21,8 +21,9 @@ export function SiteFooter() {
           <div>
             <Logo asLink={false} tone="light" />
             <p className="mt-6 max-w-xs text-[0.95rem] leading-relaxed text-cream/75">
-              A calm, evidence-informed naturopathy practice led by {clinic.doctor} — helping you
-              heal naturally through food, movement, breath and rest.
+              A calm, evidence-informed holistic wellness practice led by {clinic.doctor} — Ayurveda,
+              naturopathy, nutrition, yoga and energy therapies — helping you heal naturally through
+              food, movement, breath and rest.
             </p>
             <p className="mt-6 font-display text-2xl leading-snug text-cream/95 italic md:text-[1.7rem]">
               “Modern wellness,
@@ -146,7 +147,7 @@ export function SiteFooter() {
             </p>
           </div>
           <p className="max-w-sm sm:text-right">
-            Naturopathy and lifestyle guidance. Not a substitute for emergency medical care.
+            Holistic wellness and lifestyle guidance. Not a substitute for emergency medical care.
           </p>
         </div>
       </div>

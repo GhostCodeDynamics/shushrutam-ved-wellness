@@ -14,7 +14,7 @@ export default function Appointment() {
     <>
       <Seo
         title="Book an Appointment | ShushrutamVed Care"
-        description="Request a naturopathy consultation with Dr. Aarti Sen — in clinic or online. Personalised diet, lifestyle and natural therapy plans."
+        description="Request a consultation with Dr. Aarti Sen — in clinic or online. Personalised holistic wellness and lifestyle plans."
         path="/appointment"
         jsonLd={[clinicSchema("/appointment")]}
       />

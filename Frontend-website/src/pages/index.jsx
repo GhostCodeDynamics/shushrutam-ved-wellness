@@ -151,8 +151,8 @@ function Hero() {
               <img
                 src={heroImage}
                 alt={`${clinic.doctor}, holistic and integrative wellness consultant`}
-                width={819}
-                height={1024}
+                width={1280}
+                height={1600}
                 fetchPriority="high"
                 className="aspect-[4/5] w-full object-cover"
               />

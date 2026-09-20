@@ -1,17 +1,18 @@
-import {
-  Activity,
-  Brain,
-  Droplets,
-  Flower2,
-  HeartPulse,
-  Leaf,
-  Moon,
-  Salad,
-  Scale,
-  Sparkles,
-  Stethoscope,
-  Sun,
-} from "lucide-react";
+import
+  {
+    Activity,
+    Brain,
+    Droplets,
+    Flower2,
+    HeartPulse,
+    Leaf,
+    Moon,
+    Salad,
+    Scale,
+    Sparkles,
+    Stethoscope,
+    Sun,
+  } from "lucide-react";
 
 export const clinic = {
   name: "ShushrutamVed Care",
@@ -22,7 +23,7 @@ export const clinic = {
   phone: "+91 6260520932",
   phoneHref: "tel:+916260520932",
   whatsapp: "https://wa.me/916260520932",
-  email: "senaartisen199@gmail.com",
+  email: "draarti.shushrutamvedcare@gmail.com",
   address: "B/86 OM Nagar, Kolar Road, Bhopal Madhya Pradesh 462042",
   hours: [
     { day: "Monday – Friday", time: "9:00 AM – 7:00 PM" },

@@ -1,5 +1,4 @@
 import { ArrowRight, BadgeCheck, Leaf, Phone } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 import doctorImage from "@/assets/about-doctor-image.jpg";
@@ -7,7 +6,9 @@ import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import { clinic, specializations, trustPoints } from "@/data/clinic";
+import { clinicSchema } from "@/lib/seo-schemas";
 import { cn } from "@/lib/utils";
 
 const journey = [
@@ -31,18 +32,12 @@ const journey = [
 export default function About() {
   return (
     <>
-      <Helmet>
-        <title>About Dr. Aarti Sen | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="Meet Dr. Aarti Sen, M.Sc. Biotechnology with 6+ years in naturopathy, lifestyle medicine, oncology nutrition and wellness at ShushrutamVed Care."
-        />
-        <meta property="og:title" content="About Dr. Aarti Sen | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="Science-trained, nature-guided naturopathy and lifestyle medicine."
-        />
-      </Helmet>
+      <Seo
+        title="About Dr. Aarti Sen | ShushrutamVed Care"
+        description="Meet Dr. Aarti Sen, M.Sc. Biotechnology with 6+ years in naturopathy, lifestyle medicine, oncology nutrition and wellness at ShushrutamVed Care."
+        path="/about"
+        jsonLd={[clinicSchema("/about")]}
+      />
 
       <PageHero
         eyebrow="About"

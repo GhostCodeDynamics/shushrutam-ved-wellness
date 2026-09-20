@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { ArrowRight, MessageCircle, Plus } from "lucide-react";
 
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import {
   Accordion,
   AccordionContent,
@@ -11,23 +11,20 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { clinic, faqs } from "@/data/clinic";
+import { clinic } from "@/data/clinic";
+import { useApiFaqs } from "@/lib/apiContent";
+import { clinicSchema, faqSchema } from "@/lib/seo-schemas";
 
 export default function Faq() {
+  const faqs = useApiFaqs();
   return (
     <>
-      <Helmet>
-        <title>Frequently Asked Questions | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="Answers about naturopathy consultations, timelines, online appointments, diet plans and combining natural care with existing medication."
-        />
-        <meta property="og:title" content="Frequently Asked Questions | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="What to expect from naturopathy and lifestyle care at ShushrutamVed Care."
-        />
-      </Helmet>
+      <Seo
+        title="Frequently Asked Questions | ShushrutamVed Care"
+        description="Answers about naturopathy consultations, timelines, online appointments, diet plans and combining natural care with existing medication."
+        path="/faq"
+        jsonLd={[clinicSchema("/faq"), faqSchema(faqs)]}
+      />
 
       <PageHero
         eyebrow="FAQ"

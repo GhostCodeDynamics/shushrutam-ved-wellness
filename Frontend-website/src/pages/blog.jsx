@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
-import { blogCategories, blogPosts } from "@/data/blog";
+import { useApiPosts } from "@/lib/apiContent";
+import { clinicSchema } from "@/lib/seo-schemas";
 import { cn } from "@/lib/utils";
 
 function PostCard({ post, index }) {
@@ -60,23 +61,18 @@ function PostCard({ post, index }) {
 
 export default function Blog() {
   const [active, setActive] = useState("All");
+  const { posts: blogPosts, categories: blogCategories } = useApiPosts();
   const filtered = active === "All" ? blogPosts : blogPosts.filter((p) => p.category === active);
   const [featured, ...rest] = filtered;
 
   return (
     <>
-      <Helmet>
-        <title>Wellness Journal | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="Practical naturopathy and lifestyle medicine notes by Dr. Aarti Sen — PCOS, thyroid, gut health, sleep, weight and stress."
-        />
-        <meta property="og:title" content="Wellness Journal | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="Gentle, evidence-informed guidance for everyday healing."
-        />
-      </Helmet>
+      <Seo
+        title="Wellness Journal | ShushrutamVed Care"
+        description="Practical naturopathy and lifestyle medicine notes by Dr. Aarti Sen — PCOS, thyroid, gut health, sleep, weight and stress."
+        path="/blog"
+        jsonLd={[clinicSchema("/blog")]}
+      />
 
       <PageHero
         eyebrow="Wellness journal"
@@ -118,6 +114,8 @@ export default function Blog() {
                 <img
                   src={featured.image}
                   alt={featured.imageAlt}
+                  decoding="async"
+                  fetchPriority="high"
                   className="h-full min-h-72 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] lg:min-h-full"
                 />
                 <span className="absolute top-5 left-5 rounded-full bg-gold px-4 py-1.5 text-[0.7rem] font-bold tracking-[0.18em] text-ink uppercase">

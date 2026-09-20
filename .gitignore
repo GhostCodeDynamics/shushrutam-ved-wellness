@@ -1,0 +1,31 @@
+# Environment / secrets
+**/.env
+**/.env.local
+**/.env.production
+
+# Node
+node_modules/
+
+# Docs (kept out of this repository)
+*.md
+
+# Test files & fixtures
+*.test.js
+*.test.jsx
+*.spec.js
+*.spec.jsx
+e2e/
+playwright.config.js
+test-results/
+playwright-report/
+blob-report/
+
+# Seed scripts
+Backend-server/src/seed/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea
+.vscode/
+*.sw?

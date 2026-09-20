@@ -11,4 +11,22 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  test: {
+    environment: "node",
+    include: ["src/**/*.test.{js,jsx}"],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (
+            id.includes("node_modules") &&
+            (id.includes("/react-router") || id.includes("/react-dom") || id.includes("/sonner"))
+          ) {
+            return "react-vendor";
+          }
+        },
+      },
+    },
+  },
 });

@@ -55,7 +55,8 @@ export function ChatWidget() {
     <div className="fixed right-4 bottom-24 z-50 flex flex-col items-end gap-3 sm:right-6 lg:bottom-6">
       <div
         role="dialog"
-        aria-modal="false"
+        aria-modal={open ? "true" : "false"}
+        aria-hidden={!open}
         aria-label={`Chat with ${clinic.doctor}`}
         className={`origin-bottom-right rounded-[1.6rem] border border-border bg-card shadow-lift transition-all duration-300 ease-out ${
           open

@@ -1,33 +1,41 @@
 import { useState } from "react";
 import { ArrowRight, Check, Plus } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
-import { allConditions, conditionGroups } from "@/data/clinic";
+import { Seo } from "@/components/site/Seo";
+import { useApiConditionGroups } from "@/lib/apiContent";
+import { clinicSchema } from "@/lib/seo-schemas";
 import { cn } from "@/lib/utils";
+
+const groupDescriptions = {
+  "Metabolic & Hormonal":
+    "We support metabolic and hormonal balance through nutrition, movement and sleep — with gentle, measurable checkpoints for weight, thyroid, PCOS and more.",
+  "Digestive Health":
+    "Digestive relief starts with rhythm — meal timing, chewing, hydration and gut-friendly food — so acidity, gas and constipation resolve rather than return.",
+  "Pain & Mobility":
+    "We address pain through posture, movement retraining and natural therapies — supporting strength and mobility without dependency.",
+  "Mind & Sleep":
+    "Calming the nervous system through breathwork, sleep hygiene and daily anchors — helping migraine, stress, anxiety and insomnia unwind.",
+};
 
 export default function Conditions() {
   const [active, setActive] = useState(0);
+  const conditionGroups = useApiConditionGroups();
+  const allConditions = conditionGroups.flatMap((g) => g.items);
   const group = conditionGroups[active];
 
   return (
     <>
-      <Helmet>
-        <title>Conditions We Treat | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="Natural, lifestyle-led care for weight, thyroid, diabetes, PCOS, acidity, constipation, back and knee pain, arthritis, migraine, stress and sleep."
-        />
-        <meta property="og:title" content="Conditions We Treat | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="Sixteen common concerns treated naturally and tracked carefully."
-        />
-      </Helmet>
+      <Seo
+        title="Conditions We Treat | ShushrutamVed Care"
+        description="Natural, lifestyle-led care for weight, thyroid, diabetes, PCOS, acidity, constipation, back and knee pain, arthritis, migraine, stress and sleep."
+        path="/conditions"
+        jsonLd={[clinicSchema("/conditions")]}
+      />
 
       <PageHero
         eyebrow="Conditions we treat"
@@ -102,8 +110,8 @@ export default function Conditions() {
                 </p>
                 <h3 className="mt-3 font-display text-3xl">{group.group}</h3>
                 <p className="mt-3 leading-relaxed text-muted-foreground">
-                  We work on these from the root — through nutrition, movement, sleep and natural
-                  therapies — with clear checkpoints at every follow-up.
+                  {groupDescriptions[group.group] ||
+                    "We work on these from the root — through nutrition, movement, sleep and natural therapies — with clear checkpoints at every follow-up."}
                 </p>
                 <ul className="mt-8 grid flex-1 content-start gap-3 sm:grid-cols-2">
                   {group.items.map((c) => (

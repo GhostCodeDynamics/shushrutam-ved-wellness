@@ -13,7 +13,6 @@ import {
   Plus,
   Star,
 } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 import aboutNature from "@/assets/about-nature.jpg";
@@ -23,6 +22,7 @@ import { AppointmentForm } from "@/components/site/AppointmentForm";
 import { BotanicalFloat } from "@/components/site/BotanicalFloat";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import {
   Accordion,
   AccordionContent,
@@ -39,6 +39,7 @@ import {
   specializations,
   trustPoints,
 } from "@/data/clinic";
+import { clinicSchema, webSiteSchema } from "@/lib/seo-schemas";
 import { cn } from "@/lib/utils";
 
 const heroStats = [
@@ -775,21 +776,12 @@ function Booking() {
 export default function Home() {
   return (
     <>
-      <Helmet>
-        <title>ShushrutamVed Care | Natural Healing for a Healthier Life</title>
-        <meta
-          name="description"
-          content="Premium naturopathy, nutrition and lifestyle medicine with Dr. Aarti Sen. Personalised natural care for weight, thyroid, PCOS, digestion, pain and stress."
-        />
-        <meta
-          property="og:title"
-          content="ShushrutamVed Care | Natural Healing for a Healthier Life"
-        />
-        <meta
-          property="og:description"
-          content="Naturopathy, nutrition and lifestyle medicine led by Dr. Aarti Sen."
-        />
-      </Helmet>
+      <Seo
+        title={`${clinic.name} | Natural Healing for a Healthier Life`}
+        description="Premium naturopathy, nutrition and lifestyle medicine with Dr. Aarti Sen. Personalised natural care for weight, thyroid, PCOS, digestion, pain and stress."
+        path="/"
+        jsonLd={[clinicSchema("/"), webSiteSchema()]}
+      />
 
       <Hero />
       <TrustBar />

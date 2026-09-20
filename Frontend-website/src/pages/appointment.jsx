@@ -1,28 +1,23 @@
 import { Clock, MapPin, MessageCircle, Phone, Video } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 
 import { AppointmentForm } from "@/components/site/AppointmentForm";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import { clinic } from "@/data/clinic";
+import { clinicSchema } from "@/lib/seo-schemas";
 
 export default function Appointment() {
   return (
     <>
-      <Helmet>
-        <title>Book an Appointment | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="Request a naturopathy consultation with Dr. Aarti Sen — in clinic or online. Personalised diet, lifestyle and natural therapy plans."
-        />
-        <meta property="og:title" content="Book an Appointment | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="Reserve a consultation with Dr. Aarti Sen, in clinic or online."
-        />
-      </Helmet>
+      <Seo
+        title="Book an Appointment | ShushrutamVed Care"
+        description="Request a naturopathy consultation with Dr. Aarti Sen — in clinic or online. Personalised diet, lifestyle and natural therapy plans."
+        path="/appointment"
+        jsonLd={[clinicSchema("/appointment")]}
+      />
 
       <PageHero
         eyebrow="Appointment"

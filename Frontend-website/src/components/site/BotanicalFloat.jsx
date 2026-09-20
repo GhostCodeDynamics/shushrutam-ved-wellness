@@ -1,20 +1,44 @@
 import { useEffect, useRef } from "react";
 
+const leafTargets = new Set();
+
+let pointerListenerAttached = false;
+
+function attachPointerListener() {
+  if (pointerListenerAttached) return;
+  pointerListenerAttached = true;
+  const root = document.documentElement;
+  window.addEventListener(
+    "pointermove",
+    (e) => {
+      const rx = (e.clientX / root.clientWidth - 0.5) * 10;
+      const ry = (e.clientY / root.clientHeight - 0.5) * 10;
+      leafTargets.forEach((el) => {
+        el.style.setProperty("--par-x", `${rx}deg`);
+        el.style.setProperty("--par-y", `${ry}deg`);
+      });
+    },
+    { passive: true },
+  );
+}
+
+function registerLeaf(el) {
+  leafTargets.add(el);
+  attachPointerListener();
+}
+
+function unregisterLeaf(el) {
+  leafTargets.delete(el);
+}
+
 function Leaf({ className = "", delay = 0, duration = 6, tint = "text-brand/20" }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const root = document.documentElement;
-    const handlePointer = (e) => {
-      const rx = (e.clientX / root.clientWidth - 0.5) * 10;
-      const ry = (e.clientY / root.clientHeight - 0.5) * 10;
-      el.style.setProperty("--par-x", `${rx}deg`);
-      el.style.setProperty("--par-y", `${ry}deg`);
-    };
-    window.addEventListener("pointermove", handlePointer);
-    return () => window.removeEventListener("pointermove", handlePointer);
+    registerLeaf(el);
+    return () => unregisterLeaf(el);
   }, []);
 
   return (

@@ -1,29 +1,26 @@
 import { ArrowRight, ArrowUpRight, CalendarDays } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
-import { processSteps, services } from "@/data/clinic";
+import { Seo } from "@/components/site/Seo";
+import { processSteps } from "@/data/clinic";
+import { useApiServices } from "@/lib/apiContent";
+import { clinicSchema, serviceListSchema } from "@/lib/seo-schemas";
 
 export default function Services() {
+  const services = useApiServices();
   const [featured, ...rest] = services;
   return (
     <>
-      <Helmet>
-        <title>Naturopathy &amp; Wellness Services | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="Naturopathy consultation, diet counselling, yoga therapy, detox, weight, thyroid, diabetes, digestive and women's wellness programmes."
-        />
-        <meta property="og:title" content="Naturopathy & Wellness Services | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="Twelve personalised wellness programmes rooted in natural healing."
-        />
-      </Helmet>
+      <Seo
+        title="Naturopathy &amp; Wellness Services | ShushrutamVed Care"
+        description="Naturopathy consultation, diet counselling, yoga therapy, detox, weight, thyroid, diabetes, digestive and women's wellness programmes."
+        path="/services"
+        jsonLd={[clinicSchema("/services"), serviceListSchema(services)]}
+      />
 
       <PageHero
         eyebrow="Services"

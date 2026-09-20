@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #f6f7f4;
+  color: #1f2937;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@theme {
+  --color-brand: #0f4c29;
+  --color-brand-soft: #e7f0ea;
+  --color-brand-ink: #0a331c;
+}

@@ -1,3 +1,9 @@
+# Allow all legitimate public crawling.
+
+User-agent: *
+Allow: /
+
+# Speed up our own bot access.
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +16,11 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# Private/internal paths — not indexable.
 User-agent: *
-Allow: /
+Disallow: /admin
+Disallow: /api
+
+# The Sitemap directive below is rewritten automatically on build by
+# scripts/generate-sitemap.mjs using SITE_URL (see public/sitemap.xml).
+Sitemap: https://shushrutamvedcare.example.com/sitemap.xml

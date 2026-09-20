@@ -1,12 +1,19 @@
 import { ArrowLeft, ArrowRight, CalendarDays, Check, Clock, MessageCircle } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Link, useParams } from "react-router-dom";
 
 import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import { clinic } from "@/data/clinic";
-import { getPost, getRelated } from "@/data/blog";
+import { useApiPost } from "@/lib/apiContent";
+import { articleSchema, breadcrumbSchema } from "@/lib/seo-schemas";
+
+function parseDisplayDate(value) {
+  const parsed = new Date(`${value} UTC`);
+  if (Number.isNaN(parsed.getTime())) return null;
+  return parsed.toISOString().slice(0, 10);
+}
 
 function Block({ block }) {
   if (block.type === "h2") {
@@ -31,7 +38,7 @@ function Block({ block }) {
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const post = getPost(slug);
+  const { post, related } = useApiPost(slug);
 
   if (!post) {
     return (
@@ -50,16 +57,27 @@ export default function BlogPost() {
     );
   }
 
-  const related = getRelated(post.slug);
+  const publishedIso = parseDisplayDate(post.date);
 
   return (
     <>
-      <Helmet>
-        <title>{`${post.title} | ShushrutamVed Care`}</title>
-        <meta name="description" content={post.excerpt} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-      </Helmet>
+      <Seo
+        title={`${post.title} | ShushrutamVed Care`}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        type="article"
+        publishedTime={publishedIso}
+        author={clinic.doctor}
+        section={post.category}
+        jsonLd={[
+          articleSchema({ ...post, publishedTime: publishedIso }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Journal", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
+        ]}
+      />
 
       <article className="texture-grain relative overflow-hidden bg-cream">
         <div
@@ -100,6 +118,8 @@ export default function BlogPost() {
               <img
                 src={post.image}
                 alt={post.imageAlt}
+                decoding="async"
+                fetchPriority="high"
                 className="aspect-[16/8] w-full object-cover"
               />
             </div>
@@ -116,21 +136,23 @@ export default function BlogPost() {
           </div>
         </Reveal>
 
-        <Reveal>
-          <aside className="mt-12 rounded-[1.8rem] bg-brand-deep p-8 text-cream md:p-10">
-            <p className="text-[0.72rem] font-bold tracking-[0.22em] text-gold uppercase">
-              Key takeaways
-            </p>
-            <ul className="mt-5 space-y-3.5">
-              {post.takeaways.map((t) => (
-                <li key={t} className="flex items-start gap-3 leading-relaxed text-cream/90">
-                  <Check className="mt-1 size-4 shrink-0 text-gold" aria-hidden />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </aside>
-        </Reveal>
+        {post.takeaways?.length > 0 && (
+          <Reveal>
+            <aside className="mt-12 rounded-[1.8rem] bg-brand-deep p-8 text-cream md:p-10">
+              <p className="text-[0.72rem] font-bold tracking-[0.22em] text-gold uppercase">
+                Key takeaways
+              </p>
+              <ul className="mt-5 space-y-3.5">
+                {post.takeaways.map((t) => (
+                  <li key={t} className="flex items-start gap-3 leading-relaxed text-cream/90">
+                    <Check className="mt-1 size-4 shrink-0 text-gold" aria-hidden />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </Reveal>
+        )}
 
         <Reveal>
           <div className="mt-10 rounded-[1.8rem] border border-border bg-card p-8 text-center shadow-soft">

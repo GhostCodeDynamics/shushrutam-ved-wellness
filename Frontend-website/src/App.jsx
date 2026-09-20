@@ -1,15 +1,17 @@
 import { Component, Suspense, lazy, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 
 import { MobileActionBar } from "@/components/site/MobileActionBar";
 import { ChatWidget } from "@/components/site/ChatWidget";
+import { Seo } from "@/components/site/Seo";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { Toaster } from "@/components/ui/sonner";
+
+import { initAnalytics, trackPageView } from "@/lib/analytics";
 import Home from "@/pages/index";
 
 const About = lazy(() => import("@/pages/about"));
@@ -18,9 +20,11 @@ const Blog = lazy(() => import("@/pages/blog"));
 const BlogPost = lazy(() => import("@/pages/blogPost"));
 const Conditions = lazy(() => import("@/pages/conditions"));
 const Contact = lazy(() => import("@/pages/contact"));
+const Disclaimer = lazy(() => import("@/pages/disclaimer"));
 const Faq = lazy(() => import("@/pages/faq"));
 const Privacy = lazy(() => import("@/pages/privacy"));
 const Services = lazy(() => import("@/pages/services"));
+const Terms = lazy(() => import("@/pages/terms"));
 
 function PageFallback() {
   return (
@@ -40,9 +44,29 @@ function ScrollToTop() {
   return null;
 }
 
+function AnalyticsTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  useEffect(() => {
+    trackPageView({ location: location.pathname + location.search });
+  }, [location.pathname, location.search]);
+
+  return null;
+}
+
 function NotFoundComponent() {
   return (
     <section className="texture-grain relative overflow-hidden bg-cream">
+      <Seo
+        title="Page Not Found | ShushrutamVed Care"
+        description="The page you were looking for doesn't exist."
+        path="/404"
+        noindex
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute -top-24 right-[-4rem] size-[22rem] rounded-full bg-brand-tint blur-3xl"
@@ -119,25 +143,8 @@ class ErrorBoundary extends Component {
 export default function App() {
   return (
     <div className="flex min-h-screen flex-col">
-      <Helmet>
-        <title>ShushrutamVed Care | Naturopathy &amp; Lifestyle Wellness</title>
-        <meta
-          name="description"
-          content="Premium naturopathy and lifestyle medicine clinic led by Dr. Aarti Sen — natural healing for weight, thyroid, PCOS, digestion, pain and stress."
-        />
-        <meta name="author" content="GhostCode Dynamics" />
-        <meta
-          property="og:title"
-          content="ShushrutamVed Care | Naturopathy &amp; Lifestyle Wellness"
-        />
-        <meta
-          property="og:description"
-          content="Natural healing for a healthier life, guided by Dr. Aarti Sen."
-        />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Helmet>
       <ScrollToTop />
+      <AnalyticsTracker />
       <SiteHeader />
       <main className="flex-1">
         <ErrorBoundary>
@@ -153,6 +160,8 @@ export default function App() {
               <Route path="/faq" element={<Faq />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/disclaimer" element={<Disclaimer />} />
               <Route path="*" element={<NotFoundComponent />} />
             </Routes>
           </Suspense>

@@ -1,28 +1,23 @@
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 
 import { AppointmentForm } from "@/components/site/AppointmentForm";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import { clinic } from "@/data/clinic";
+import { clinicSchema } from "@/lib/seo-schemas";
 
 export default function Contact() {
   return (
     <>
-      <Helmet>
-        <title>Contact &amp; Visit Us | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="Reach ShushrutamVed Care by phone, WhatsApp or email. Clinic address, opening hours, map and appointment enquiry form."
-        />
-        <meta property="og:title" content="Contact & Visit Us | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="Phone, WhatsApp, email, map and opening hours for ShushrutamVed Care."
-        />
-      </Helmet>
+      <Seo
+        title="Contact &amp; Visit Us | ShushrutamVed Care"
+        description="Reach ShushrutamVed Care by phone, WhatsApp or email. Clinic address, opening hours, map and appointment enquiry form."
+        path="/contact"
+        jsonLd={[clinicSchema("/contact")]}
+      />
 
       <PageHero
         eyebrow="Contact"

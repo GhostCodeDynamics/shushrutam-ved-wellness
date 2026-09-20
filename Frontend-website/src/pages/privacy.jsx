@@ -1,10 +1,11 @@
 import { Mail, ShieldCheck } from "lucide-react";
-import { Helmet } from "react-helmet-async";
 
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
+import { Seo } from "@/components/site/Seo";
 import { clinic } from "@/data/clinic";
+import { clinicSchema, breadcrumbSchema } from "@/lib/seo-schemas";
 
 const sections = [
   {
@@ -36,18 +37,12 @@ const sections = [
 export default function Privacy() {
   return (
     <>
-      <Helmet>
-        <title>Privacy Policy | ShushrutamVed Care</title>
-        <meta
-          name="description"
-          content="How ShushrutamVed Care collects, uses, stores and protects patient information shared through consultations and website enquiries."
-        />
-        <meta property="og:title" content="Privacy Policy | ShushrutamVed Care" />
-        <meta
-          property="og:description"
-          content="Our commitment to confidentiality and responsible handling of your health data."
-        />
-      </Helmet>
+      <Seo
+        title="Privacy Policy | ShushrutamVed Care"
+        description="How ShushrutamVed Care collects, uses, stores and protects patient information shared through consultations and website enquiries."
+        path="/privacy"
+        jsonLd={[clinicSchema("/privacy"), breadcrumbSchema()]}
+      />
 
       <PageHero
         eyebrow="Privacy Policy"

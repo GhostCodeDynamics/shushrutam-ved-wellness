@@ -23,7 +23,6 @@ GhostCode Dynamics
 - JavaScript (JSX)
 - Tailwind CSS
 - React Router DOM
-- react-helmet-async
 - shadcn / Radix UI
 
 ## Repository Purpose

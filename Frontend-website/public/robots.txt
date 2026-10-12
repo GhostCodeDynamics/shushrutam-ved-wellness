@@ -1,6 +1,7 @@
 # Allow all legitimate public crawling.
 # The `Sitemap:` directive is written at build time by scripts/generate-sitemap.mjs
 # from VITE_SITE_URL / SITE_URL — do not hardcode a domain here.
+# deploy-marker: 3 (vercel.json SPA rewrite must be live when this line is visible).
 
 User-agent: *
 Allow: /

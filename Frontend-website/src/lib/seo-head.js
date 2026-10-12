@@ -88,7 +88,9 @@ export function updateSeo({
       script.setAttribute("data-seo", "true");
       document.head.appendChild(script);
     }
-    const next = JSON.stringify(jsonLd);
+    // Escape "<" so user/CMS content can never close the script tag
+    // (`</script>` breakout) when the DOM is serialized for crawlers.
+    const next = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
     if (script.textContent !== next) {
       script.textContent = next;
     }

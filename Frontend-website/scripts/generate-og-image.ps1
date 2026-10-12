@@ -1,10 +1,11 @@
 # Generates public/og-image.png (1200x630 social preview) using the clinic logo
 # and brand palette. Requires Windows PowerShell with System.Drawing.
 #
-# Usage: powershell -File scripts/generate-og-image.ps1 -SiteUrl https://clinic.example
+# Usage: powershell -File scripts/generate-og-image.ps1 -SiteUrl https://your-domain.example
+# SiteUrl defaults to VITE_SITE_URL / SITE_URL from the environment, then localhost.
 
 param(
-  [string]$SiteUrl = "https://shushrutamvedcare.example.com"
+  [string]$SiteUrl = $(if ($env:VITE_SITE_URL) { $env:VITE_SITE_URL } elseif ($env:SITE_URL) { $env:SITE_URL } else { "http://localhost:5173" })
 )
 
 Add-Type -AssemblyName System.Drawing

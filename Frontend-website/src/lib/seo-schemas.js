@@ -9,7 +9,6 @@ function openingHoursSpecification() {
       closes: "19:00",
     },
     { days: ["saturday"], opens: "09:00", closes: "16:00" },
-    { days: ["sunday"], opens: "00:00", closes: "23:59" },
   ];
 
   return ranges.map((r) => ({
@@ -41,12 +40,10 @@ export function clinicSchema(path = "/") {
       addressCountry: "IN",
     },
     openingHoursSpecification: openingHoursSpecification(),
-    medicalSpecialty: "https://schema.org/Preventive",
     founder: {
       "@type": "Physician",
       name: clinic.doctor,
       jobTitle: "Holistic & Integrative Wellness Practitioner",
-      medicalSpecialty: "https://schema.org/Preventive",
     },
   };
 }
@@ -66,12 +63,20 @@ export function faqSchema(faqList) {
   };
 }
 
-export function articleSchema({ title, excerpt, slug, image, publishedTime, dateModified }) {
+export function articleSchema({
+  title,
+  excerpt,
+  description,
+  slug,
+  image,
+  publishedTime,
+  dateModified,
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
-    description: excerpt,
+    description: description || excerpt,
     image: image ? absoluteUrl(image) : undefined,
     author: {
       "@type": "Person",
@@ -91,7 +96,7 @@ export function articleSchema({ title, excerpt, slug, image, publishedTime, date
   };
 }
 
-export function breadcrumbSchema(items) {
+export function breadcrumbSchema(items = []) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -139,7 +144,7 @@ export function serviceListSchema(services) {
     name: `${clinic.name} — wellness programmes`,
     url: absoluteUrl("/services"),
     itemListElement: services.map((service, i) => ({
-      "@type": "ItemList",
+      "@type": "ListItem",
       position: i + 1,
       item: {
         "@type": ["Service", "MedicalBusiness"],

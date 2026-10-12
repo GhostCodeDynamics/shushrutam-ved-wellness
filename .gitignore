@@ -6,6 +6,9 @@
 # Node
 node_modules/
 
+# Generated at build time by Frontend-website/scripts/generate-sitemap.mjs
+Frontend-website/public/sitemap.xml
+
 # Docs (kept out of this repository)
 *.md
 

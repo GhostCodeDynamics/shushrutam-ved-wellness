@@ -1,26 +1,8 @@
 # Allow all legitimate public crawling.
+# The `Sitemap:` directive is written at build time by scripts/generate-sitemap.mjs
+# from VITE_SITE_URL / SITE_URL — do not hardcode a domain here.
 
 User-agent: *
 Allow: /
-
-# Speed up our own bot access.
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-# Private/internal paths — not indexable.
-User-agent: *
 Disallow: /admin
 Disallow: /api
-
-# The Sitemap directive below is rewritten automatically on build by
-# scripts/generate-sitemap.mjs using SITE_URL (see public/sitemap.xml).
-Sitemap: https://shushrutamvedcare.example.com/sitemap.xml

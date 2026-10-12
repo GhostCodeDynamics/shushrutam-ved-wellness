@@ -16,6 +16,9 @@ async function request(path, { method = "GET", body, headers = {}, signal } = {}
     credentials: "include",
     signal,
     ...(method === "GET" || method === "HEAD" ? {} : {}),
+    // Always hit the network: a revalidated 304 has no body, and the API is
+    // dynamic, so a cached copy only ever produces stale or failed requests.
+    cache: "no-store",
   });
 
   let data = null;

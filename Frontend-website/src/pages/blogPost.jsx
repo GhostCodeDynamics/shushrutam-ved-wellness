@@ -9,12 +9,6 @@ import { clinic } from "@/data/clinic";
 import { useApiPost } from "@/lib/apiContent";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo-schemas";
 
-function parseDisplayDate(value) {
-  const parsed = new Date(`${value} UTC`);
-  if (Number.isNaN(parsed.getTime())) return null;
-  return parsed.toISOString().slice(0, 10);
-}
-
 function Block({ block }) {
   if (block.type === "h2") {
     return (
@@ -24,8 +18,11 @@ function Block({ block }) {
   if (block.type === "list") {
     return (
       <ul className="mt-5 space-y-3 rounded-2xl border border-brand/15 bg-brand-tint/60 p-6">
-        {block.items.map((item) => (
-          <li key={item} className="flex items-start gap-3 text-[0.95rem] leading-relaxed">
+        {block.items.map((item, i) => (
+          <li
+            key={`${i}-${item}`}
+            className="flex items-start gap-3 text-[0.95rem] leading-relaxed"
+          >
             <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
             {item}
           </li>
@@ -38,15 +35,25 @@ function Block({ block }) {
 
 export default function BlogPost() {
   const { slug } = useParams();
-  const { post, related } = useApiPost(slug);
+  const { post, related, status } = useApiPost(slug);
 
-  if (!post) {
+  if (status === "loading") {
+    return (
+      <section className="mx-auto max-w-2xl px-6 py-24 text-center" aria-busy="true">
+        <p className="eyebrow-center justify-center">Journal</p>
+        <h1 className="mt-5 font-display text-4xl">Loading article…</h1>
+        <p className="mt-4 text-muted-foreground">Fetching the latest version of this article.</p>
+      </section>
+    );
+  }
+
+  if (status === "error") {
     return (
       <section className="mx-auto max-w-2xl px-6 py-24 text-center">
-        <p className="eyebrow-center justify-center">Not found</p>
-        <h1 className="mt-5 font-display text-4xl">This article doesn't exist</h1>
+        <p className="eyebrow-center justify-center">Offline</p>
+        <h1 className="mt-5 font-display text-4xl">We couldn't load this article</h1>
         <p className="mt-4 text-muted-foreground">
-          It may have been moved. Browse the journal for more reads.
+          Please refresh the page — if it keeps happening, browse the journal instead.
         </p>
         <Button asChild variant="hero" size="pill" className="mt-8">
           <Link to="/blog">
@@ -57,20 +64,52 @@ export default function BlogPost() {
     );
   }
 
-  const publishedIso = parseDisplayDate(post.date);
+  if (!post) {
+    return (
+      <>
+        <Seo
+          title={`Article not found | ShushrutamVed Care`}
+          description="This article could not be found. Browse the wellness journal for more reads."
+          path={`/blog/${slug}`}
+          noindex
+        />
+        <section className="mx-auto max-w-2xl px-6 py-24 text-center">
+          <p className="eyebrow-center justify-center">Not found</p>
+          <h1 className="mt-5 font-display text-4xl">This article doesn't exist</h1>
+          <p className="mt-4 text-muted-foreground">
+            It may have been moved. Browse the journal for more reads.
+          </p>
+          <Button asChild variant="hero" size="pill" className="mt-8">
+            <Link to="/blog">
+              <ArrowLeft className="size-4" /> Back to journal
+            </Link>
+          </Button>
+        </section>
+      </>
+    );
+  }
+
+  const seoTitle = post.seoTitle || post.title;
+  const seoDescription = post.seoDescription || post.excerpt;
 
   return (
     <>
       <Seo
-        title={`${post.title} | ShushrutamVed Care`}
-        description={post.excerpt}
+        title={`${seoTitle} | ShushrutamVed Care`}
+        description={seoDescription}
         path={`/blog/${post.slug}`}
         type="article"
-        publishedTime={publishedIso}
+        image={post.image}
+        publishedTime={post.publishedIso}
         author={clinic.doctor}
         section={post.category}
         jsonLd={[
-          articleSchema({ ...post, publishedTime: publishedIso }),
+          articleSchema({
+            ...post,
+            description: seoDescription,
+            publishedTime: post.publishedIso,
+            dateModified: post.modifiedIso,
+          }),
           breadcrumbSchema([
             { name: "Home", path: "/" },
             { name: "Journal", path: "/blog" },
@@ -131,7 +170,7 @@ export default function BlogPost() {
         <Reveal>
           <div className="text-[1.02rem]">
             {post.content.map((b, i) => (
-              <Block key={i} block={b} />
+              <Block key={`${post.slug}-${i}`} block={b} />
             ))}
           </div>
         </Reveal>

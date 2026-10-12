@@ -61,9 +61,15 @@ function PostCard({ post, index }) {
 
 export default function Blog() {
   const [active, setActive] = useState("All");
-  const { posts: blogPosts, categories: blogCategories } = useApiPosts();
+  const { posts: blogPosts, categories: blogCategories, status } = useApiPosts();
   const filtered = active === "All" ? blogPosts : blogPosts.filter((p) => p.category === active);
   const [featured, ...rest] = filtered;
+  const emptyMessage =
+    status === "loading"
+      ? "Loading articles…"
+      : status === "error"
+        ? "The journal is temporarily unavailable — please refresh the page."
+        : "No articles in this topic yet — check back soon.";
 
   return (
     <>
@@ -80,7 +86,7 @@ export default function Blog() {
         description="Short, practical reads on hormones, gut, sleep, weight and calm — written by Dr. Aarti Sen in plain language, with steps you can actually follow."
       />
 
-      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20">
+      <section className="mx-auto max-w-7xl px-6 py-14 md:py-20" aria-busy={status === "loading"}>
         <Reveal
           className="flex flex-wrap justify-center gap-2"
           role="group"
@@ -163,8 +169,11 @@ export default function Blog() {
         </div>
 
         {filtered.length === 0 && (
-          <p className="mt-12 text-center text-muted-foreground">
-            No articles in this topic yet — check back soon.
+          <p
+            className="mt-12 text-center text-muted-foreground"
+            role={status === "error" ? "alert" : "status"}
+          >
+            {emptyMessage}
           </p>
         )}
       </section>

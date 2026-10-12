@@ -1,19 +1,18 @@
-import
-  {
-    Activity,
-    Apple,
-    Brain,
-    Droplets,
-    Flower2,
-    HeartPulse,
-    Leaf,
-    Moon,
-    Salad,
-    Scale,
-    Sparkles,
-    Stethoscope,
-    Sun,
-  } from "lucide-react";
+import {
+  Activity,
+  Apple,
+  Brain,
+  Droplets,
+  Flower2,
+  HeartPulse,
+  Leaf,
+  Moon,
+  Salad,
+  Scale,
+  Sparkles,
+  Stethoscope,
+  Sun,
+} from "lucide-react";
 
 export const clinic = {
   name: "ShushrutamVed Care",
@@ -164,7 +163,8 @@ export const processSteps = [
 export const trustPoints = [
   {
     title: "6+ Years Experience",
-    description: "Clinical practice rooted in biotechnology research and integrative wellness care.",
+    description:
+      "Clinical practice rooted in biotechnology research and integrative wellness care.",
     icon: Stethoscope,
   },
   {

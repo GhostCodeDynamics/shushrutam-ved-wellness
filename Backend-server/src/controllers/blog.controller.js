@@ -14,6 +14,9 @@ function publicPost(doc) {
     author: doc.author,
     publishDate: doc.publishDate,
     featuredImage: doc.featuredImage,
+    seoTitle: doc.seoTitle,
+    seoDescription: doc.seoDescription,
+    updatedAt: doc.updatedAt,
   };
 }
 

@@ -66,6 +66,14 @@ export function createApp() {
     }),
   );
 
+  // Dynamic JSON API: never cache. Without this Express sends an ETag but no
+  // Cache-Control, so browsers revalidate and answer 304 — a bodyless response
+  // clients treat as a failure (empty "temporarily unavailable" screens).
+  app.use((req, res, next) => {
+    res.set("Cache-Control", "no-store");
+    next();
+  });
+
   app.use("/api", routes);
 
   app.use(notFoundMiddleware);

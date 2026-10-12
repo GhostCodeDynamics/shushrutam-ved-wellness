@@ -25,11 +25,11 @@ export function assertBlogPostPayload(body, { partial = false } = {}) {
   }
 
   if (body.slug !== undefined) {
+    // Blank slug is omitted on purpose: the controller auto-generates a unique,
+    // URL-safe slug from the title (admin UI ships "Leave blank to auto-generate").
     const slug = cleanString(body.slug, { max: 200 }).toLowerCase();
-    if (!slug) {
-      throw validationError("Slug is required", [{ field: "slug", message: "Required" }]);
-    }
-    result.slug = slug.replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-");
+    const normalized = slug.replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-+|-+$/g, "");
+    if (normalized) result.slug = normalized;
   }
 
   if (body.excerpt !== undefined) result.excerpt = cleanString(body.excerpt, { max: 500 });

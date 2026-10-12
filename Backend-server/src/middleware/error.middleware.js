@@ -27,7 +27,9 @@ export function errorMiddleware(error, req, res, next) {
     message = "Internal server error";
   }
 
-  const body = { error: message };
+  // `error` is the canonical key; `message` mirrors it so browser clients that
+  // read `data.message` show the real reason instead of "Request failed (400)".
+  const body = { error: message, message };
   if (error?.details) {
     body.details = error.details;
   }

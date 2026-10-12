@@ -40,6 +40,8 @@ export async function dashboard(req, res, next) {
         ref: a.ref,
         name: a.name,
         phone: a.phone,
+        service: a.service,
+        preferredDate: a.preferredDate,
         status: a.status,
         createdAt: a.createdAt,
       })),

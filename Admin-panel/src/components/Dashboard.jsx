@@ -35,11 +35,10 @@ export default function Dashboard() {
   const { counts, recentEnquiries } = data;
 
   const tiles = [
-    { label: "Pending", value: counts.pending, color: "text-amber-600", icon: CalendarCheck },
-    { label: "Today", value: counts.today, color: "text-brand", icon: ListChecks },
-    { label: "Total enquiries", value: counts.total, color: "text-gray-800", icon: ClipboardList },
-    { label: "Appointments", value: counts.appointments, color: "text-gray-800", icon: CalendarCheck },
-    { label: "Published posts", value: counts.publishedBlogs, color: "text-blue-600", icon: FileText },
+    { label: "Pending", value: counts.pendingAppointments, color: "text-amber-600", icon: CalendarCheck },
+    { label: "Today", value: counts.todaysEnquiries, color: "text-brand", icon: ListChecks },
+    { label: "Total enquiries", value: counts.totalAppointments, color: "text-gray-800", icon: ClipboardList },
+    { label: "Published blogs", value: counts.publishedBlogs, color: "text-blue-600", icon: FileText },
     { label: "Services", value: counts.services, color: "text-gray-800", icon: ClipboardList },
     { label: "FAQs", value: counts.faqs, color: "text-gray-800", icon: HelpCircle },
     { label: "Conditions", value: counts.conditions, color: "text-gray-800", icon: ListChecks },

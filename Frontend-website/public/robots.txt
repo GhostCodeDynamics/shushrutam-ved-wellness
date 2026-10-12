@@ -6,3 +6,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api
+Sitemap: https://shushrutam-ved.vercel.app/sitemap.xml

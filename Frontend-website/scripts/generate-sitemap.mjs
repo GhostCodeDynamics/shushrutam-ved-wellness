@@ -84,7 +84,10 @@ let apiFailed = false;
 
 if (apiBase) {
   try {
-    const response = await fetch(`${apiBase}/blog`, { signal: AbortSignal.timeout(8000) });
+    // Generous: the Render free tier sleeps when idle and a cold start can take
+    // ~45s, and on CI a timeout fails the build (a sitemap without posts must
+    // never ship). Localhost fails fast when no dev API is running.
+    const response = await fetch(`${apiBase}/blog`, { signal: AbortSignal.timeout(60000) });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const { items = [] } = await response.json();
     const seen = new Set();

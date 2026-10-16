@@ -1,5 +1,6 @@
 import { BlogPost } from "../models/index.js";
 import { AppError, conflictError } from "../utils/AppError.js";
+import { requestSiteRebuild } from "../utils/deployHook.js";
 import { cleanString } from "../utils/sanitize.js";
 import { slugify, uniqueSlugSuffix } from "../utils/slugify.js";
 import { assertBlogPostPayload } from "../validators/blog.validator.js";
@@ -119,6 +120,8 @@ export async function adminCreate(req, res, next) {
     payload.slug = await slugWithRetry(payload.slug, null);
     if (!payload.author) payload.author = req.admin?.name || "";
     const post = await BlogPost.create(payload);
+    // Only published posts change what the website serves (URL + sitemap entry).
+    if (post.isPublished) requestSiteRebuild("post published");
     res.status(201).json({ post: adminPost(post) });
   } catch (error) {
     if (error?.code === 11000) {
@@ -136,8 +139,17 @@ export async function adminUpdate(req, res, next) {
     if (payload.slug) {
       payload.slug = await slugWithRetry(payload.slug, post._id);
     }
+    const wasPublished = post.isPublished;
+    const previousSlug = post.slug;
     Object.assign(post, payload);
     await post.save();
+    // Content edits need no rebuild (the prerendered shell is generic and the
+    // sitemap's lastmod follows publishDate) — only visibility and the URL do.
+    if (wasPublished !== post.isPublished) {
+      requestSiteRebuild(post.isPublished ? "post published" : "post unpublished");
+    } else if (post.isPublished && previousSlug !== post.slug) {
+      requestSiteRebuild("published slug changed");
+    }
     res.json({ post: adminPost(post) });
   } catch (error) {
     if (error?.code === 11000) {
@@ -151,6 +163,7 @@ export async function adminDelete(req, res, next) {
   try {
     const post = await BlogPost.findByIdAndDelete(req.params.id);
     if (!post) return next(new AppError("Article not found", 404));
+    if (post.isPublished) requestSiteRebuild("published post deleted");
     res.status(204).end();
   } catch (error) {
     next(error);

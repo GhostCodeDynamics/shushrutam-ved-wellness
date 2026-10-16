@@ -24,6 +24,23 @@ function proxyTrust() {
   return raw;
 }
 
+/**
+ * Vercel Deploy Hook for the website project (Vercel -> Settings -> Git ->
+ * Deploy Hooks). When set, publishing/unpublishing a post or changing a slug
+ * pings it so Vercel rebuilds — a rebuild is what refreshes sitemap.xml and
+ * writes the prerendered /blog/<slug> file (see
+ * Frontend-website/scripts/prerender-routes.mjs). Empty = disabled.
+ */
+function deployHookUrl() {
+  const value = optional("VERCEL_DEPLOY_HOOK_URL", "");
+  if (!value) return "";
+  if (!value.startsWith("https://")) {
+    console.warn("[env] VERCEL_DEPLOY_HOOK_URL must be an https:// URL — automatic rebuilds stay disabled.");
+    return "";
+  }
+  return value;
+}
+
 function corsOrigins() {
   const raw = optional("CORS_ORIGINS", "http://localhost:5173,http://localhost:5174");
   const result = [];
@@ -61,6 +78,8 @@ export const env = {
   trustProxy: proxyTrust(),
 
   corsOrigins: corsOrigins(),
+
+  deployHookUrl: deployHookUrl(),
 
   mongoUri: optional("MONGODB_URI", ""),
 

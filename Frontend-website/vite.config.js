@@ -12,6 +12,12 @@ const DEFAULT_SITE_ORIGIN = "http://localhost:5173";
  * (og:url / og:image). Social scrapers never run JS, so those two must be
  * absolute when the HTML is served. Single source of truth: VITE_SITE_URL
  * (see .env.example) — same value src/lib/site.js uses for canonical URLs.
+ *
+ * Also injects the Google Search Console verification tag when
+ * VITE_GOOGLE_SITE_VERIFICATION is set — Google fetches raw HTML without JS,
+ * so this has to be in the static document rather than added at runtime.
+ * `*.vercel.app` cannot be verified with a DNS TXT record (Vercel owns the
+ * zone), which is why the HTML-tag method is the supported one here.
  */
 function siteOriginHtml() {
   return {
@@ -20,7 +26,13 @@ function siteOriginHtml() {
       const env = loadEnv(ctx.mode, process.cwd(), "");
       const origin =
         (env.VITE_SITE_URL || env.SITE_URL || "").trim().replace(/\/$/, "") || DEFAULT_SITE_ORIGIN;
-      return html.replaceAll("%SITE_ORIGIN%", origin);
+      const verification = (env.VITE_GOOGLE_SITE_VERIFICATION || "").trim();
+      const verificationTag = verification
+        ? `<meta name="google-site-verification" content="${verification.replaceAll('"', "&quot;")}" />`
+        : "";
+      return html
+        .replaceAll("%SITE_ORIGIN%", origin)
+        .replaceAll("%GOOGLE_SITE_VERIFICATION%", verificationTag);
     },
   };
 }

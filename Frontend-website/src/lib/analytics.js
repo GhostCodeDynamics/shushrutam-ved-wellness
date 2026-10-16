@@ -1,4 +1,8 @@
-const MEASUREMENT_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID || "").trim();
+// Production builds only: `npm run dev` on localhost must never send hits to
+// the live GA4 property (import.meta.env.PROD is true only for `vite build`).
+const MEASUREMENT_ID = import.meta.env.PROD
+  ? (import.meta.env.VITE_GA_MEASUREMENT_ID || "").trim()
+  : "";
 
 export const analyticsEnabled = Boolean(MEASUREMENT_ID);
 
@@ -20,7 +24,10 @@ export function initAnalytics() {
     window.dataLayer.push(arguments);
   };
   gtag("js", new Date());
-  gtag("config", MEASUREMENT_ID, { anonymize_ip: true });
+  // send_page_view:false — App.jsx's <AnalyticsTracker/> fires the page_view
+  // event on every SPA route change (including the first render), so the
+  // config-level automatic page_view would double-count the landing page.
+  gtag("config", MEASUREMENT_ID, { anonymize_ip: true, send_page_view: false });
 }
 
 export function trackPageView({ location, title }) {

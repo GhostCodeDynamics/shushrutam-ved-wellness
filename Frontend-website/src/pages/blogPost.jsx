@@ -9,6 +9,36 @@ import { clinic } from "@/data/clinic";
 import { useApiPost } from "@/lib/apiContent";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo-schemas";
 
+// Inline [label](https://…) links inside CMS text (reference lists, sources)
+// render as real anchors; plain text is untouched. Built as React elements —
+// no dangerouslySetInnerHTML, so CMS content can never inject markup.
+const INLINE_LINK = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+
+function renderText(text) {
+  const source = String(text || "");
+  const parts = [];
+  let cursor = 0;
+  let match;
+  INLINE_LINK.lastIndex = 0;
+  while ((match = INLINE_LINK.exec(source)) !== null) {
+    if (match.index > cursor) parts.push(source.slice(cursor, match.index));
+    parts.push(
+      <a
+        key={match.index}
+        href={match[2]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-medium text-brand underline underline-offset-4 hover:underline-offset-2"
+      >
+        {match[1]}
+      </a>,
+    );
+    cursor = match.index + match[0].length;
+  }
+  if (cursor < source.length) parts.push(source.slice(cursor));
+  return parts.length ? parts : source;
+}
+
 function Block({ block }) {
   if (block.type === "h2") {
     return (
@@ -24,13 +54,13 @@ function Block({ block }) {
             className="flex items-start gap-3 text-[0.95rem] leading-relaxed"
           >
             <Check className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
-            {item}
+            {renderText(item)}
           </li>
         ))}
       </ul>
     );
   }
-  return <p className="mt-5 leading-[1.85] text-ink/80">{block.text}</p>;
+  return <p className="mt-5 leading-[1.85] text-ink/80">{renderText(block.text)}</p>;
 }
 
 export default function BlogPost() {

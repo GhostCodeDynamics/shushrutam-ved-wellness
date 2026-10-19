@@ -15,9 +15,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import aboutNature from "@/assets/about-nature.jpg";
-import heroImage from "@/assets/doctor-hero-client.jpg";
-import naturopathyConsultation from "@/assets/naturopathy-consultation.jpg";
+import { SITE_IMAGES, ik } from "@/lib/media";
 import { AppointmentForm } from "@/components/site/AppointmentForm";
 import { BotanicalFloat } from "@/components/site/BotanicalFloat";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
@@ -149,7 +147,9 @@ function Hero() {
             />
             <div className="arch-mask relative overflow-hidden border border-brand/15 bg-card shadow-lift">
               <img
-                src={heroImage}
+                src={ik(SITE_IMAGES.hero, 832)}
+                srcSet={`${ik(SITE_IMAGES.hero, 480)} 480w, ${ik(SITE_IMAGES.hero, 832)} 832w, ${ik(SITE_IMAGES.hero, 1280)} 1280w`}
+                sizes="(min-width: 1024px) 416px, calc(100vw - 48px)"
                 alt={`${clinic.doctor}, holistic and integrative wellness consultant`}
                 width={1280}
                 height={1600}
@@ -231,7 +231,9 @@ function Approach() {
             />
             <div className="relative overflow-hidden rounded-[2rem] rounded-tr-[6rem] border border-border shadow-lift">
               <img
-                src={aboutNature}
+                src={ik(SITE_IMAGES.aboutNature, 560)}
+                srcSet={`${ik(SITE_IMAGES.aboutNature, 560)} 560w, ${ik(SITE_IMAGES.aboutNature, 1120)} 1120w`}
+                sizes="(min-width: 1024px) 560px, calc(100vw - 48px)"
                 alt="Fresh herbs, seeds and infused water arranged on natural linen"
                 width={1200}
                 height={912}
@@ -320,7 +322,9 @@ function Programs() {
             <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-cream/15 bg-cream text-ink shadow-lift">
               <div className="relative overflow-hidden">
                 <img
-                  src={naturopathyConsultation}
+                  src={ik(SITE_IMAGES.naturopathy, 480)}
+                  srcSet={`${ik(SITE_IMAGES.naturopathy, 480)} 480w, ${ik(SITE_IMAGES.naturopathy, 960)} 960w`}
+                  sizes="(min-width: 1024px) 470px, calc(100vw - 48px)"
                   alt="Naturopathy consultation flat-lay — herbal infusion, mortar with fresh tulsi, brass bowl of fennel seeds and consultation notes"
                   width={1440}
                   height={1080}
@@ -444,18 +448,18 @@ function Concerns() {
         </div>
 
         <Reveal delay={100}>
-          <div
-            role="tablist"
-            aria-label="Wellness concerns"
-            className="overflow-hidden rounded-[1.8rem] border border-border bg-card shadow-soft"
-          >
+          {/* Accordion pattern (W3C APG): stacked expandable rows driven by
+              aria-expanded + aria-controls. The earlier tablist/tab/tabpanel
+              roles were invalid here — the tablist's children were wrapper
+              divs (no owned tabs), and the visual pattern is an accordion,
+              not tabs — which Lighthouse flagged as "ARIA role missing
+              required children". */}
+          <div className="overflow-hidden rounded-[1.8rem] border border-border bg-card shadow-soft">
             {conditionGroups.map((g, i) => {
               const open = active === i;
               return (
                 <div key={g.group} className={cn(i > 0 && "border-t border-border")}>
                   <button
-                    role="tab"
-                    aria-selected={open}
                     aria-expanded={open}
                     aria-controls={`concern-panel-${i}`}
                     id={`concern-tab-${i}`}
@@ -496,8 +500,6 @@ function Concerns() {
                   </button>
                   <div
                     id={`concern-panel-${i}`}
-                    role="tabpanel"
-                    aria-labelledby={`concern-tab-${i}`}
                     className={cn(
                       "grid transition-all duration-400 ease-out",
                       open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",

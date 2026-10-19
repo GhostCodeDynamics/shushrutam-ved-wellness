@@ -54,7 +54,9 @@ export function Logo({ className, compact = false, asLink = true, tone = "dark" 
           >
             {clinic.name}
           </span>
-
+          {/* Whitespace-only node: keeps the concatenated text
+              ("ShushrutamVed Care by Dr. Aarti Sen") readable for the
+              accessible-name rule; ignored by flex layout. */}{" "}
           <span
             className={cn(
               "truncate text-[0.6rem]",
@@ -75,7 +77,7 @@ export function Logo({ className, compact = false, asLink = true, tone = "dark" 
   }
 
   return (
-    <Link to="/" aria-label={clinic.name} className={groupClassName}>
+    <Link to="/" aria-label={`${clinic.name} by ${clinic.doctor}`} className={groupClassName}>
       {lockup}
     </Link>
   );

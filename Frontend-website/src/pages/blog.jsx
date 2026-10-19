@@ -8,6 +8,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { Seo } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import { useApiPosts } from "@/lib/apiContent";
+import { ik } from "@/lib/media";
 import { clinicSchema } from "@/lib/seo-schemas";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +22,7 @@ function PostCard({ post, index }) {
           className="relative block overflow-hidden"
         >
           <img
-            src={post.image}
+            src={ik(post.image, 800)}
             alt={post.imageAlt}
             loading="lazy"
             className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -118,7 +119,9 @@ export default function Blog() {
                 aria-label={`Read featured article: ${featured.title}`}
               >
                 <img
-                  src={featured.image}
+                  src={ik(featured.image, 1120)}
+                  srcSet={`${ik(featured.image, 560)} 560w, ${ik(featured.image, 1120)} 1120w`}
+                  sizes="(min-width: 1024px) 560px, calc(100vw - 48px)"
                   alt={featured.imageAlt}
                   decoding="async"
                   fetchPriority="high"

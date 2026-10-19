@@ -1,5 +1,7 @@
-import aboutNature from "@/assets/about-nature.jpg";
-import leafTexture from "@/assets/leaf-texture.jpg";
+import { SITE_IMAGES } from "@/lib/media";
+
+const aboutNature = SITE_IMAGES.aboutNature;
+const leafTexture = SITE_IMAGES.leafTexture;
 
 export const blogCategories = [
   "All",

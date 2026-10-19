@@ -57,6 +57,11 @@ export function ChatWidget() {
         role="dialog"
         aria-modal={open ? "true" : "false"}
         aria-hidden={!open}
+        // Closed panel is visually hidden but stays mounted for the open/close
+        // transition; inert keeps its links out of the tab order so an
+        // aria-hidden subtree never contains focusable content (axe
+        // aria-hidden-focus).
+        inert={!open}
         aria-label={`Chat with ${clinic.doctor}`}
         className={`origin-bottom-right rounded-[1.6rem] border border-border bg-card shadow-lift transition-all duration-300 ease-out ${
           open

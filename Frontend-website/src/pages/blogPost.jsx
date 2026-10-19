@@ -7,6 +7,7 @@ import { Seo } from "@/components/site/Seo";
 import { Button } from "@/components/ui/button";
 import { clinic } from "@/data/clinic";
 import { useApiPost } from "@/lib/apiContent";
+import { ik } from "@/lib/media";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo-schemas";
 
 // Inline [label](https://…) links inside CMS text (reference lists, sources)
@@ -185,7 +186,9 @@ export default function BlogPost() {
           <Reveal>
             <div className="overflow-hidden rounded-[2rem] border border-border shadow-lift">
               <img
-                src={post.image}
+                src={ik(post.image, 848)}
+                srcSet={`${ik(post.image, 848)} 848w, ${ik(post.image, 1600)} 1600w`}
+                sizes="(min-width: 1024px) 848px, calc(100vw - 48px)"
                 alt={post.imageAlt}
                 decoding="async"
                 fetchPriority="high"
@@ -266,7 +269,7 @@ export default function BlogPost() {
                 <article className="card-lift group flex h-full flex-col overflow-hidden rounded-[1.6rem] border border-border bg-card shadow-soft">
                   <Link to={`/blog/${p.slug}`} className="relative block overflow-hidden">
                     <img
-                      src={p.image}
+                      src={ik(p.image, 800)}
                       alt={p.imageAlt}
                       loading="lazy"
                       className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"

@@ -1,7 +1,7 @@
 import { ArrowRight, BadgeCheck, Leaf, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import doctorImage from "@/assets/about-doctor-image.jpg";
+import { SITE_IMAGES, ik } from "@/lib/media";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
@@ -54,7 +54,9 @@ export default function About() {
             />
             <div className="arch-mask relative overflow-hidden border border-brand/15 shadow-lift">
               <img
-                src={doctorImage}
+                src={ik(SITE_IMAGES.aboutDoctor, 560)}
+                srcSet={`${ik(SITE_IMAGES.aboutDoctor, 560)} 560w, ${ik(SITE_IMAGES.aboutDoctor, 1120)} 1120w`}
+                sizes="(min-width: 1024px) 560px, calc(100vw - 48px)"
                 alt={`${clinic.doctor} at ShushrutamVed Care`}
                 width={1024}
                 height={1280}

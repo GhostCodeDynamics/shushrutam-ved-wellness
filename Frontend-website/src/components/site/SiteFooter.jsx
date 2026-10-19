@@ -45,6 +45,8 @@ export function SiteFooter() {
                 { label: "Appointment", to: "/appointment" },
                 { label: "FAQ", to: "/faq" },
                 { label: "Privacy Policy", to: "/privacy" },
+                { label: "Terms of Service", to: "/terms" },
+                { label: "Medical Disclaimer", to: "/disclaimer" },
               ].map((l) => (
                 <li key={l.to}>
                   <Link

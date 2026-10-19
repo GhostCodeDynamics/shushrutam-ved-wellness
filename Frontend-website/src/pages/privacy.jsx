@@ -5,7 +5,7 @@ import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
 import { Seo } from "@/components/site/Seo";
 import { clinic } from "@/data/clinic";
-import { clinicSchema, breadcrumbSchema } from "@/lib/seo-schemas";
+import { clinicSchema } from "@/lib/seo-schemas";
 
 const sections = [
   {
@@ -41,7 +41,7 @@ export default function Privacy() {
         title="Privacy Policy | ShushrutamVed Care"
         description="How ShushrutamVed Care collects, uses, stores and protects patient information shared through consultations and website enquiries."
         path="/privacy"
-        jsonLd={[clinicSchema("/privacy"), breadcrumbSchema()]}
+        jsonLd={[clinicSchema("/privacy")]}
       />
 
       <PageHero

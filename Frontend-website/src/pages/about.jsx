@@ -58,6 +58,7 @@ export default function About() {
                 alt={`${clinic.doctor} at ShushrutamVed Care`}
                 width={1024}
                 height={1280}
+                fetchPriority="high"
                 className="aspect-[4/5] w-full object-cover"
               />
             </div>

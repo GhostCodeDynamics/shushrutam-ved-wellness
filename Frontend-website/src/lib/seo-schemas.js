@@ -13,24 +13,30 @@ function openingHoursSpecification() {
 
   return ranges.map((r) => ({
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: r.days.map((d) => `https://schema.org/${d.charAt(0).toUpperCase()}${d.slice(1)}day`),
+    dayOfWeek: r.days.map((d) => `https://schema.org/${d.charAt(0).toUpperCase()}${d.slice(1)}`),
     opens: r.opens,
     closes: r.closes,
   }));
 }
 
-export function clinicSchema(path = "/") {
+const CLINIC_ID = `${absoluteUrl("/")}#clinic`;
+
+export function clinicSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["MedicalClinic", "Physician"],
-    "@id": absoluteUrl(path),
+    "@type": ["MedicalClinic", "LocalBusiness"],
+    "@id": CLINIC_ID,
     name: clinic.name,
-    description: `${clinic.name} — ${clinic.tagline}.`,
-    url: absoluteUrl(path),
+    alternateName: `${clinic.name} — Naturopathy & Holistic Wellness Clinic, Bhopal`,
+    description: `${clinic.name} is a naturopathy and holistic wellness clinic in Bhopal led by ${clinic.doctor}, offering Ayurveda, clinical nutrition, yoga therapy and Panchakarma.`,
+    url: absoluteUrl("/"),
     telephone: clinic.phone,
     email: clinic.email,
     image: absoluteUrl("/og-image.png"),
+    logo: absoluteUrl("/assets/logo/icon.png"),
+    slogan: clinic.tagline,
     priceRange: "₹₹",
+    currenciesAccepted: "INR",
     address: {
       "@type": "PostalAddress",
       streetAddress: "B/86 OM Nagar, Kolar Road",
@@ -39,12 +45,41 @@ export function clinicSchema(path = "/") {
       postalCode: "462042",
       addressCountry: "IN",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: clinic.geo.latitude,
+      longitude: clinic.geo.longitude,
+    },
+    hasMap: clinic.mapLink,
     openingHoursSpecification: openingHoursSpecification(),
+    medicalSpecialty: ["DietNutrition", "PreventiveMedicine"],
+    availableService: [
+      { "@type": "MedicalTherapy", name: "Naturopathy" },
+      { "@type": "MedicalTherapy", name: "Ayurveda" },
+      { "@type": "MedicalTherapy", name: "Yoga Therapy" },
+      { "@type": "MedicalTherapy", name: "Panchakarma" },
+      { "@type": "MedicalTherapy", name: "Clinical Nutrition" },
+    ],
+    areaServed: [
+      { "@type": "City", name: "Bhopal" },
+      { "@type": "AdministrativeArea", name: "Madhya Pradesh" },
+      { "@type": "Country", name: "India" },
+    ],
     founder: {
       "@type": "Physician",
       name: clinic.doctor,
       jobTitle: "Holistic & Integrative Wellness Practitioner",
+      url: absoluteUrl("/about"),
     },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: clinic.phone,
+      email: clinic.email,
+      contactType: "customer service",
+      areaServed: "IN",
+      availableLanguage: ["en", "hi"],
+    },
+    // No sameAs until the clinic has verified social/Google Business Profile URLs.
   };
 }
 
@@ -147,14 +182,10 @@ export function serviceListSchema(services) {
       "@type": "ListItem",
       position: i + 1,
       item: {
-        "@type": ["Service", "MedicalBusiness"],
+        "@type": "Service",
         name: service.title,
         description: service.description,
-        provider: {
-          "@type": "MedicalClinic",
-          name: clinic.name,
-          url: absoluteUrl("/"),
-        },
+        provider: { "@id": CLINIC_ID },
       },
     })),
   };

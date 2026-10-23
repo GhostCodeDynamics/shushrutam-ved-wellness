@@ -39,9 +39,9 @@ export default function Privacy() {
     <>
       <Seo
         title="Privacy Policy | ShushrutamVed Care"
-        description="How ShushrutamVed Care collects, uses, stores and protects patient information shared through consultations and website enquiries."
+        description="How ShushrutamVed Care collects, uses, stores and protects patient information shared through consultations, appointment enquiries and website contact forms."
         path="/privacy"
-        jsonLd={[clinicSchema("/privacy")]}
+        jsonLd={[clinicSchema()]}
       />
 
       <PageHero

@@ -25,12 +25,14 @@ export const clinic = {
   phoneHref: "tel:+916260520932",
   whatsapp: "https://wa.me/916260520932",
   email: "draarti.shushrutamvedcare@gmail.com",
-  address: "B/86 OM Nagar, Kolar Road, Bhopal Madhya Pradesh 462042",
+  address: "B/86 OM Nagar, Kolar Road, Bhopal, Madhya Pradesh 462042",
+  geo: { latitude: 23.1726284, longitude: 77.4168488 },
   hours: [
     { day: "Monday – Friday", time: "9:00 AM – 7:00 PM" },
     { day: "Saturday", time: "9:00 AM – 4:00 PM" },
     { day: "Sunday", time: "Online consultations only" },
   ],
+  mapLink: "https://www.google.com/maps?q=B/86+OM+Nagar+Kolar+Road+Bhopal",
   map: "https://www.google.com/maps?q=B/86+OM+Nagar+Kolar+Road+Bhopal&output=embed",
 };
 

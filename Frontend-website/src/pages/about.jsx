@@ -33,16 +33,17 @@ export default function About() {
   return (
     <>
       <Seo
-        title="About Dr. Aarti Sen | ShushrutamVed Care"
-        description="Meet Dr. Aarti Sen, M.Sc. Biotechnology with 6+ years in holistic and integrative wellness — Ayurveda, naturopathy, nutrition, yoga, Panchakarma, Reiki and oncology nutrition support — at ShushrutamVed Care, Bhopal."
+        title="About Dr. Aarti Sen | ShushrutamVed Care Bhopal"
+        description="Meet Dr. Aarti Sen, M.Sc. Biotechnology — 6+ years of holistic wellness, naturopathy, Ayurveda and clinical nutrition care at ShushrutamVed Care in Bhopal."
         path="/about"
-        jsonLd={[clinicSchema("/about")]}
+        imageAlt="Dr. Aarti Sen, holistic wellness practitioner at ShushrutamVed Care in Bhopal"
+        jsonLd={[clinicSchema()]}
       />
 
       <PageHero
         eyebrow="About"
-        title="Science-trained. Nature-guided."
-        description={`${clinic.doctor} blends research rigour with the quiet wisdom of natural healing — for people who want lasting change, not quick fixes.`}
+        title="Dr. Aarti Sen: science-trained, nature-guided."
+        description={`${clinic.doctor} blends research rigour with the quiet wisdom of natural healing in Bhopal — for people who want lasting change, not quick fixes.`}
       />
 
       <section className="mx-auto max-w-7xl px-6 py-20 md:py-28">

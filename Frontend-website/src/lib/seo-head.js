@@ -1,6 +1,9 @@
 import { clinic } from "@/data/clinic";
 import { absoluteUrl } from "@/lib/site";
 
+const DEFAULT_OG_IMAGE = "/og-image.png";
+const DEFAULT_OG_ALT = `${clinic.name} — naturopathy and holistic wellness clinic in Bhopal`;
+
 function upsertMeta(attr, key, value) {
   const selector = attr === "name" ? `meta[name="${key}"]` : `meta[property="${key}"]`;
   let el = document.head.querySelector(selector);
@@ -24,7 +27,8 @@ export function updateSeo({
   description,
   path = "/",
   type = "website",
-  image = "/og-image.png",
+  image = DEFAULT_OG_IMAGE,
+  imageAlt,
   noindex = false,
   publishedTime,
   author,
@@ -35,22 +39,37 @@ export function updateSeo({
 
   const canonical = absoluteUrl(path);
   const ogImage = absoluteUrl(image);
+  const ogAlt = imageAlt || DEFAULT_OG_ALT;
+  const isDefaultImage = ogImage.endsWith(DEFAULT_OG_IMAGE);
 
   document.title = title;
   upsertMeta("name", "description", description);
   upsertMeta("name", "robots", noindex ? "noindex, nofollow" : "index, follow");
 
   upsertMeta("property", "og:site_name", clinic.name);
+  upsertMeta("property", "og:locale", "en_IN");
   upsertMeta("property", "og:title", title);
   upsertMeta("property", "og:url", canonical);
   upsertMeta("property", "og:type", type);
   upsertMeta("property", "og:image", ogImage);
+  upsertMeta("property", "og:image:alt", ogAlt);
   upsertMeta("property", "og:description", description);
+
+  if (isDefaultImage) {
+    upsertMeta("property", "og:image:type", "image/png");
+    upsertMeta("property", "og:image:width", "1200");
+    upsertMeta("property", "og:image:height", "630");
+  } else {
+    removeByAttr("property", "og:image:type");
+    removeByAttr("property", "og:image:width");
+    removeByAttr("property", "og:image:height");
+  }
 
   upsertMeta("name", "twitter:card", "summary_large_image");
   upsertMeta("name", "twitter:title", title);
   upsertMeta("name", "twitter:description", description);
   upsertMeta("name", "twitter:image", ogImage);
+  upsertMeta("name", "twitter:image:alt", ogAlt);
 
   if (publishedTime) {
     upsertMeta("property", "article:published_time", publishedTime);

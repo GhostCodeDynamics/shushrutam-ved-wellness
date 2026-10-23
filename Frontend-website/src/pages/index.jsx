@@ -71,7 +71,7 @@ function Hero() {
         <Reveal>
           <Eyebrow>Where modern medicine meets natural healing</Eyebrow>
           <h1 className="mt-5 max-w-xl font-display text-[2.75rem] leading-[1.04] text-balance text-ink sm:text-6xl lg:text-[4.4rem]">
-            Natural healing for{" "}
+            Naturopathy in Bhopal for{" "}
             <span className="relative inline-block text-brand italic">
               a healthier
               <svg
@@ -95,8 +95,8 @@ function Hero() {
           <p className="mt-6 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
             Harmonious, integrative wellness — Ayurveda, naturopathy, clinical nutrition, yoga
             therapy, Panchakarma, Reiki and oncology nutrition support, thoughtfully combined by{" "}
-            {clinic.doctor} to treat the root cause, not just the symptom. Calm, personalised care
-            for modern living.
+            {clinic.doctor} in Bhopal to treat the root cause, not just the symptom. Calm,
+            personalised care for modern living.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild variant="hero" size="pill" className="btn-arrow">
@@ -716,7 +716,10 @@ function Booking() {
                 <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand text-cream">
                   <MapPin className="size-4" aria-hidden />
                 </span>
-                <span className="leading-relaxed">{clinic.address}</span>
+                <address className="not-italic leading-relaxed">
+                  <span className="block font-display text-base text-ink">{clinic.name}</span>{" "}
+                  {clinic.address}
+                </address>
               </li>
               <li className="flex gap-3">
                 <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand text-cream">
@@ -782,10 +785,11 @@ export default function Home() {
   return (
     <>
       <Seo
-        title={`${clinic.name} | Natural Healing for a Healthier Life`}
-        description="Holistic and integrative wellness with Dr. Aarti Sen in Bhopal — Ayurveda, naturopathy, nutrition, yoga therapy, Panchakarma, Reiki and oncology nutrition support for weight, thyroid, PCOS, digestion, pain and stress."
+        title="Naturopathy in Bhopal by Dr. Aarti Sen | ShushrutamVed Care"
+        description="ShushrutamVed Care | Naturopathy & Holistic Wellness Clinic in Bhopal by Dr. Aarti Sen – root-cause care for weight, hormones, PCOS, digestion & more."
         path="/"
-        jsonLd={[clinicSchema("/"), webSiteSchema()]}
+        imageAlt="ShushrutamVed Care — naturopathy and holistic wellness clinic in Bhopal"
+        jsonLd={[clinicSchema(), webSiteSchema()]}
       />
 
       <Hero />

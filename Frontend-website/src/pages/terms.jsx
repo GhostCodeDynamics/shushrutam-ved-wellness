@@ -61,7 +61,7 @@ export default function Terms() {
     <>
       <Seo
         title="Terms of Service | ShushrutamVed Care"
-        description="Terms of use for the ShushrutamVed Care website — scope of services, appointment enquiries, intellectual property and liability."
+        description="Terms of use for the ShushrutamVed Care website — scope of holistic wellness services, appointment enquiries, payments, intellectual property and liability."
         path="/terms"
       />
 

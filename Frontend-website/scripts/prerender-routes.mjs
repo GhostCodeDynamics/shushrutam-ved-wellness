@@ -51,6 +51,7 @@ const DEFAULT_LOCAL_ORIGIN = "http://localhost:5173";
 const LOCAL_API = "http://localhost:4000/api";
 const SITE_NAME = "ShushrutamVed Care";
 const FALLBACK_OG_IMAGE = "/og-image.png";
+const DEFAULT_OG_ALT = `${SITE_NAME} — naturopathy and holistic wellness clinic in Bhopal`;
 
 const origin = (process.env.VITE_SITE_URL || process.env.SITE_URL || "").trim().replace(/\/$/, "");
 
@@ -61,59 +62,68 @@ const origin = (process.env.VITE_SITE_URL || process.env.SITE_URL || "").trim().
  */
 const PAGE_SEO = {
   "/": {
-    title: `${SITE_NAME} | Natural Healing for a Healthier Life`,
+    title: `Naturopathy in Bhopal by Dr. Aarti Sen | ${SITE_NAME}`,
     description:
-      "Holistic and integrative wellness with Dr. Aarti Sen in Bhopal — Ayurveda, naturopathy, nutrition, yoga therapy, Panchakarma, Reiki and oncology nutrition support for weight, thyroid, PCOS, digestion, pain and stress.",
+      "ShushrutamVed Care | Naturopathy & Holistic Wellness Clinic in Bhopal by Dr. Aarti Sen – root-cause care for weight, hormones, PCOS, digestion & more.",
+    imageAlt: DEFAULT_OG_ALT,
   },
   "/about": {
-    title: `About Dr. Aarti Sen | ${SITE_NAME}`,
+    title: `About Dr. Aarti Sen | ${SITE_NAME} Bhopal`,
     description:
-      "Meet Dr. Aarti Sen, M.Sc. Biotechnology with 6+ years in holistic and integrative wellness — Ayurveda, naturopathy, nutrition, yoga, Panchakarma, Reiki and oncology nutrition support — at ShushrutamVed Care, Bhopal.",
+      "Meet Dr. Aarti Sen, M.Sc. Biotechnology — 6+ years of holistic wellness, naturopathy, Ayurveda and clinical nutrition care at ShushrutamVed Care in Bhopal.",
+    imageAlt: "Dr. Aarti Sen, holistic wellness practitioner at ShushrutamVed Care in Bhopal",
   },
   "/services": {
-    title: `Holistic & Integrative Wellness Services | ${SITE_NAME}`,
+    title: `Holistic Wellness Services in Bhopal | ${SITE_NAME}`,
     description:
-      "Ayurveda, naturopathy, nutrition counselling, yoga therapy, Panchakarma, Reiki, detox, weight, thyroid, diabetes, digestive, women's wellness and oncology nutrition support programmes.",
+      "Naturopathy, Ayurveda, yoga therapy, Panchakarma and nutrition programmes in Bhopal — personalised plans for weight, hormones, gut health and everyday energy.",
+    imageAlt: "Holistic wellness and naturopathy services at ShushrutamVed Care, Bhopal",
   },
   "/conditions": {
-    title: `Conditions We Treat | ${SITE_NAME}`,
+    title: `Conditions We Treat | ${SITE_NAME} Bhopal`,
     description:
-      "Natural, lifestyle-led care for weight, thyroid, diabetes, PCOS, acidity, constipation, back and knee pain, arthritis, migraine, stress and sleep.",
+      "Naturopathy in Bhopal for PCOS, thyroid, diabetes, weight, acidity, constipation, back and knee pain, migraine, stress and sleep — natural, root-cause care.",
+    imageAlt:
+      "Naturopathy and lifestyle care for metabolic, hormonal and digestive conditions in Bhopal",
   },
   "/blog": {
-    title: `Wellness Journal | ${SITE_NAME}`,
+    title: `Wellness Blog by Dr. Aarti Sen | ${SITE_NAME}`,
     description:
-      "Practical holistic wellness and lifestyle notes by Dr. Aarti Sen — PCOS, thyroid, gut health, sleep, weight and stress.",
+      "Practical notes by Dr. Aarti Sen on PCOS, thyroid, gut health, sleep, weight and stress — holistic wellness guidance from our naturopathy clinic in Bhopal.",
+    imageAlt: "Wellness journal by Dr. Aarti Sen at ShushrutamVed Care, Bhopal",
   },
   "/faq": {
     title: `Frequently Asked Questions | ${SITE_NAME}`,
     description:
-      "Answers about holistic wellness consultations, timelines, online appointments, nutrition and lifestyle plans, and combining natural care with existing medication.",
+      "Answers on naturopathy consultations in Bhopal, timelines, online appointments, nutrition plans and combining holistic wellness care with your medication.",
+    imageAlt: "Frequently asked questions about naturopathy care at ShushrutamVed Care, Bhopal",
   },
   "/appointment": {
-    title: `Book an Appointment | ${SITE_NAME}`,
+    title: `Book a Naturopathy Consultation | ${SITE_NAME}`,
     description:
-      "Request a consultation with Dr. Aarti Sen — in clinic or online. Personalised holistic wellness and lifestyle plans.",
+      "Book a naturopathy consultation with Dr. Aarti Sen in Bhopal or online. Personalised holistic wellness plans for weight, hormones, digestion and stress.",
+    imageAlt: "Book a naturopathy consultation with Dr. Aarti Sen at ShushrutamVed Care, Bhopal",
   },
   "/contact": {
-    title: `Contact & Visit Us | ${SITE_NAME}`,
+    title: `Contact & Visit Us | ${SITE_NAME}, Bhopal`,
     description:
-      "Reach ShushrutamVed Care by phone, WhatsApp or email. Clinic address, opening hours, map and appointment enquiry form.",
+      "Visit ShushrutamVed Care, B/86 OM Nagar, Kolar Road, Bhopal — clinic address, map and opening hours. Call +91 6260520932 for holistic care with Dr. Aarti Sen.",
+    imageAlt: "ShushrutamVed Care naturopathy clinic on Kolar Road, Bhopal",
   },
   "/privacy": {
     title: `Privacy Policy | ${SITE_NAME}`,
     description:
-      "How ShushrutamVed Care collects, uses, stores and protects patient information shared through consultations and website enquiries.",
+      "How ShushrutamVed Care collects, uses, stores and protects patient information shared through consultations, appointment enquiries and website contact forms.",
   },
   "/terms": {
     title: `Terms of Service | ${SITE_NAME}`,
     description:
-      "Terms of use for the ShushrutamVed Care website — scope of services, appointment enquiries, intellectual property and liability.",
+      "Terms of use for the ShushrutamVed Care website — scope of holistic wellness services, appointment enquiries, payments, intellectual property and liability.",
   },
   "/disclaimer": {
     title: `Medical Disclaimer | ${SITE_NAME}`,
     description:
-      "ShushrutamVed Care's medical disclaimer — our website provides educational wellness information and is not a substitute for personal medical advice or emergency care.",
+      "ShushrutamVed Care's medical disclaimer — our website provides educational wellness information and is not a substitute for medical advice or emergency care.",
   },
 };
 
@@ -156,6 +166,8 @@ if (apiBase) {
         title: `${post.seoTitle || post.title || ""} | ${SITE_NAME}`,
         description: post.seoDescription || post.excerpt || "",
         image: post.featuredImage || "",
+        imageAlt: post.imageAlt || post.title || "",
+        type: "article",
         publishedTime: post.publishDate ? String(post.publishDate).slice(0, 10) : "",
         author: "",
         section: post.category || "",
@@ -185,6 +197,11 @@ function upsertMeta(html, attr, key, value) {
   return re.test(html) ? html.replace(re, tag) : html.replace("</head>", `  ${tag}\n  </head>`);
 }
 
+function removeMeta(html, attr, key) {
+  const re = new RegExp(`\\s*<meta[^>]*${attr}="${key}"[^>]*/?>`, "i");
+  return html.replace(re, "");
+}
+
 /**
  * Rewrites the static <head> so non-JS consumers (social scrapers, audit
  * crawlers, secondary indexes) see this route's real identity. Values mirror
@@ -192,7 +209,16 @@ function upsertMeta(html, attr, key, value) {
  */
 function injectHead(
   html,
-  { title, description, path, image = "", publishedTime = "", section = "" },
+  {
+    title,
+    description,
+    path,
+    image = "",
+    imageAlt = "",
+    type = "website",
+    publishedTime = "",
+    section = "",
+  },
 ) {
   const canonical = `${origin}${path === "/" ? "/" : path}`;
   const ogImage = image
@@ -200,6 +226,7 @@ function injectHead(
       ? image
       : `${origin}${image}`
     : `${origin}${FALLBACK_OG_IMAGE}`;
+  const ogAlt = imageAlt || DEFAULT_OG_ALT;
 
   let out = html;
   out = out.replace(/<title[^>]*>[\s\S]*?<\/title>/, `<title>${escapeHtml(title)}</title>`);
@@ -207,10 +234,23 @@ function injectHead(
   out = upsertMeta(out, "property", "og:title", title);
   out = upsertMeta(out, "property", "og:description", description);
   out = upsertMeta(out, "property", "og:url", canonical);
+  out = upsertMeta(out, "property", "og:type", type);
   out = upsertMeta(out, "property", "og:image", ogImage);
+  out = upsertMeta(out, "property", "og:image:alt", ogAlt);
   out = upsertMeta(out, "name", "twitter:title", title);
   out = upsertMeta(out, "name", "twitter:description", description);
   out = upsertMeta(out, "name", "twitter:image", ogImage);
+  out = upsertMeta(out, "name", "twitter:image:alt", ogAlt);
+
+  if (ogImage.endsWith(FALLBACK_OG_IMAGE)) {
+    out = upsertMeta(out, "property", "og:image:type", "image/png");
+    out = upsertMeta(out, "property", "og:image:width", "1200");
+    out = upsertMeta(out, "property", "og:image:height", "630");
+  } else {
+    out = removeMeta(out, "property", "og:image:type");
+    out = removeMeta(out, "property", "og:image:width");
+    out = removeMeta(out, "property", "og:image:height");
+  }
 
   if (publishedTime) {
     out = upsertMeta(out, "property", "article:published_time", publishedTime);

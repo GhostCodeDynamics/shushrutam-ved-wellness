@@ -131,6 +131,7 @@ export default function BlogPost() {
         path={`/blog/${post.slug}`}
         type="article"
         image={post.image}
+        imageAlt={post.imageAlt || `${post.title} — ${clinic.name}`}
         publishedTime={post.publishedIso}
         author={clinic.doctor}
         section={post.category}
@@ -190,6 +191,8 @@ export default function BlogPost() {
                 srcSet={`${ik(post.image, 848)} 848w, ${ik(post.image, 1600)} 1600w`}
                 sizes="(min-width: 1024px) 848px, calc(100vw - 48px)"
                 alt={post.imageAlt}
+                width={848}
+                height={424}
                 decoding="async"
                 fetchPriority="high"
                 className="aspect-[16/8] w-full object-cover"
@@ -271,6 +274,8 @@ export default function BlogPost() {
                     <img
                       src={ik(p.image, 800)}
                       alt={p.imageAlt}
+                      width={800}
+                      height={500}
                       loading="lazy"
                       className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />

@@ -21,9 +21,10 @@ export default function Faq() {
     <>
       <Seo
         title="Frequently Asked Questions | ShushrutamVed Care"
-        description="Answers about holistic wellness consultations, timelines, online appointments, nutrition and lifestyle plans, and combining natural care with existing medication."
+        description="Answers on naturopathy consultations in Bhopal, timelines, online appointments, nutrition plans and combining holistic wellness care with your medication."
         path="/faq"
-        jsonLd={[clinicSchema("/faq"), faqSchema(faqs)]}
+        imageAlt="Frequently asked questions about naturopathy care at ShushrutamVed Care, Bhopal"
+        jsonLd={[clinicSchema(), faqSchema(faqs)]}
       />
 
       <PageHero

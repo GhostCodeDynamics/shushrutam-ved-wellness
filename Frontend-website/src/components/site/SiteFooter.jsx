@@ -80,38 +80,43 @@ export function SiteFooter() {
             <h3 className="text-[0.72rem] font-bold tracking-[0.22em] text-gold uppercase">
               Visit the clinic
             </h3>
-            <ul className="mt-5 space-y-4 text-[0.92rem] text-cream/80">
-              <li className="flex gap-3">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
-                <span>{clinic.address}</span>
-              </li>
-              <li className="flex gap-3">
-                <Phone className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
-                <a href={clinic.phoneHref} className="transition-colors hover:text-cream">
-                  {clinic.phone}
-                </a>
-              </li>
-              <li className="flex gap-3">
-                <MessageCircle className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
-                <a
-                  href={clinic.whatsapp}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 transition-colors hover:text-cream"
-                >
-                  WhatsApp enquiry <ArrowUpRight className="size-3.5" />
-                </a>
-              </li>
-              <li className="flex gap-3">
-                <Mail className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
-                <a
-                  href={`mailto:${clinic.email}`}
-                  className="break-all transition-colors hover:text-cream"
-                >
-                  {clinic.email}
-                </a>
-              </li>
-            </ul>
+            <address className="not-italic">
+              <ul className="mt-5 space-y-4 text-[0.92rem] text-cream/80">
+                <li className="flex gap-3">
+                  <MapPin className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+                  <span>
+                    <span className="block font-display text-base text-cream">{clinic.name}</span>{" "}
+                    {clinic.address}
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <Phone className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+                  <a href={clinic.phoneHref} className="transition-colors hover:text-cream">
+                    {clinic.phone}
+                  </a>
+                </li>
+                <li className="flex gap-3">
+                  <MessageCircle className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+                  <a
+                    href={clinic.whatsapp}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 transition-colors hover:text-cream"
+                  >
+                    WhatsApp enquiry <ArrowUpRight className="size-3.5" />
+                  </a>
+                </li>
+                <li className="flex gap-3">
+                  <Mail className="mt-0.5 size-4 shrink-0 text-gold" aria-hidden />
+                  <a
+                    href={`mailto:${clinic.email}`}
+                    className="break-all transition-colors hover:text-cream"
+                  >
+                    {clinic.email}
+                  </a>
+                </li>
+              </ul>
+            </address>
             <div className="mt-6 rounded-2xl border border-cream/15 bg-cream/8 p-4 text-[0.85rem]">
               <p className="flex items-center gap-2 font-semibold text-cream">
                 <Clock className="size-4 text-gold" aria-hidden /> Consulting hours

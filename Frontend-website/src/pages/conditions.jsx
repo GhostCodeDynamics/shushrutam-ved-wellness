@@ -31,10 +31,11 @@ export default function Conditions() {
   return (
     <>
       <Seo
-        title="Conditions We Treat | ShushrutamVed Care"
-        description="Natural, lifestyle-led care for weight, thyroid, diabetes, PCOS, acidity, constipation, back and knee pain, arthritis, migraine, stress and sleep."
+        title="Conditions We Treat | ShushrutamVed Care Bhopal"
+        description="Naturopathy in Bhopal for PCOS, thyroid, diabetes, weight, acidity, constipation, back and knee pain, migraine, stress and sleep — natural, root-cause care."
         path="/conditions"
-        jsonLd={[clinicSchema("/conditions")]}
+        imageAlt="Naturopathy and lifestyle care for metabolic, hormonal and digestive conditions in Bhopal"
+        jsonLd={[clinicSchema()]}
       />
 
       <PageHero

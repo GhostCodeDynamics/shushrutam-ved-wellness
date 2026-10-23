@@ -14,16 +14,17 @@ export default function Contact() {
   return (
     <>
       <Seo
-        title="Contact &amp; Visit Us | ShushrutamVed Care"
-        description="Reach ShushrutamVed Care by phone, WhatsApp or email. Clinic address, opening hours, map and appointment enquiry form."
+        title="Contact & Visit Us | ShushrutamVed Care, Bhopal"
+        description="Visit ShushrutamVed Care, B/86 OM Nagar, Kolar Road, Bhopal — clinic address, map and opening hours. Call +91 6260520932 for holistic care with Dr. Aarti Sen."
         path="/contact"
-        jsonLd={[clinicSchema("/contact")]}
+        imageAlt="ShushrutamVed Care naturopathy clinic on Kolar Road, Bhopal"
+        jsonLd={[clinicSchema()]}
       />
 
       <PageHero
         eyebrow="Contact"
-        title="We're glad you reached out"
-        description="Visit the clinic, call us, or send a WhatsApp message — whichever feels easiest."
+        title="Visit our naturopathy clinic in Bhopal"
+        description="Visit the clinic in OM Nagar, Kolar Road, call us, or send a WhatsApp message — whichever feels easiest."
       />
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -40,8 +41,8 @@ export default function Contact() {
             {
               icon: MapPin,
               label: "Clinic",
-              value: "OM Nagar, Kolar Road, Bhopal",
-              href: undefined,
+              value: clinic.address,
+              href: clinic.mapLink,
             },
           ].map((c, i) => (
             <Reveal key={c.label} delay={i * 70} className="h-full">
@@ -115,7 +116,16 @@ export default function Contact() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{clinic.address}</p>
+              <address className="mt-5 space-y-1 text-sm leading-relaxed text-muted-foreground not-italic">
+                <span className="block font-display text-base text-ink">{clinic.name}</span>{" "}
+                <span className="block">{clinic.address}</span>{" "}
+                <a
+                  href={clinic.phoneHref}
+                  className="block font-semibold text-brand transition-colors hover:underline"
+                >
+                  {clinic.phone}
+                </a>
+              </address>
               <Button asChild variant="outlineBrand" size="pillSm" className="mt-6 w-full">
                 <a href={clinic.whatsapp} target="_blank" rel="noreferrer">
                   <MessageCircle className="size-4" /> Message on WhatsApp

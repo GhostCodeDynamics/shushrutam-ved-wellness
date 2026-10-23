@@ -33,7 +33,7 @@ export default function Disclaimer() {
     <>
       <Seo
         title="Medical Disclaimer | ShushrutamVed Care"
-        description="ShushrutamVed Care's medical disclaimer — our website provides educational wellness information and is not a substitute for personal medical advice or emergency care."
+        description="ShushrutamVed Care's medical disclaimer — our website provides educational wellness information and is not a substitute for medical advice or emergency care."
         path="/disclaimer"
       />
 

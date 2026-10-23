@@ -12,6 +12,7 @@ export function Seo({
   path = "/",
   type = "website",
   image = "/og-image.png",
+  imageAlt,
   noindex = false,
   publishedTime,
   author,
@@ -27,6 +28,7 @@ export function Seo({
       path,
       type,
       image,
+      imageAlt,
       noindex,
       publishedTime,
       author,
@@ -34,7 +36,19 @@ export function Seo({
       jsonLd,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, path, type, image, noindex, publishedTime, author, section, jsonKey]);
+  }, [
+    title,
+    description,
+    path,
+    type,
+    image,
+    imageAlt,
+    noindex,
+    publishedTime,
+    author,
+    section,
+    jsonKey,
+  ]);
 
   return null;
 }

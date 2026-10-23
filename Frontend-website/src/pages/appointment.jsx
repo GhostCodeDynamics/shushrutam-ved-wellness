@@ -13,15 +13,16 @@ export default function Appointment() {
   return (
     <>
       <Seo
-        title="Book an Appointment | ShushrutamVed Care"
-        description="Request a consultation with Dr. Aarti Sen — in clinic or online. Personalised holistic wellness and lifestyle plans."
+        title="Book a Naturopathy Consultation | ShushrutamVed Care"
+        description="Book a naturopathy consultation with Dr. Aarti Sen in Bhopal or online. Personalised holistic wellness plans for weight, hormones, digestion and stress."
         path="/appointment"
-        jsonLd={[clinicSchema("/appointment")]}
+        imageAlt="Book a naturopathy consultation with Dr. Aarti Sen at ShushrutamVed Care, Bhopal"
+        jsonLd={[clinicSchema()]}
       />
 
       <PageHero
         eyebrow="Appointment"
-        title="Reserve your consultation"
+        title="Book your naturopathy consultation"
         description="Share your details below, or reach us directly on call and WhatsApp. Online consultations are available across India."
       />
 

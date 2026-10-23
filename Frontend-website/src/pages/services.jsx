@@ -16,15 +16,16 @@ export default function Services() {
   return (
     <>
       <Seo
-        title="Holistic &amp; Integrative Wellness Services | ShushrutamVed Care"
-        description="Ayurveda, naturopathy, nutrition counselling, yoga therapy, Panchakarma, Reiki, detox, weight, thyroid, diabetes, digestive, women's wellness and oncology nutrition support programmes."
+        title="Holistic Wellness Services in Bhopal | ShushrutamVed Care"
+        description="Naturopathy, Ayurveda, yoga therapy, Panchakarma and nutrition programmes in Bhopal — personalised plans for weight, hormones, gut health and everyday energy."
         path="/services"
-        jsonLd={[clinicSchema("/services"), serviceListSchema(services)]}
+        imageAlt="Holistic wellness and naturopathy services at ShushrutamVed Care, Bhopal"
+        jsonLd={[clinicSchema(), serviceListSchema(services)]}
       />
 
       <PageHero
         eyebrow="Services"
-        title="Wellness programmes, personally written"
+        title="Holistic wellness programmes, personally written"
         description="Each programme is shaped around your reports, your routine and your kitchen — combining nutrition, movement, breathwork and natural therapies with modern medicine where relevant."
       />
 

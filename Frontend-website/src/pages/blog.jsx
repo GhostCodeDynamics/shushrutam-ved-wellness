@@ -24,6 +24,8 @@ function PostCard({ post, index }) {
           <img
             src={ik(post.image, 800)}
             alt={post.imageAlt}
+            width={800}
+            height={500}
             loading="lazy"
             className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
           />
@@ -75,10 +77,11 @@ export default function Blog() {
   return (
     <>
       <Seo
-        title="Wellness Journal | ShushrutamVed Care"
-        description="Practical holistic wellness and lifestyle notes by Dr. Aarti Sen — PCOS, thyroid, gut health, sleep, weight and stress."
+        title="Wellness Blog by Dr. Aarti Sen | ShushrutamVed Care"
+        description="Practical notes by Dr. Aarti Sen on PCOS, thyroid, gut health, sleep, weight and stress — holistic wellness guidance from our naturopathy clinic in Bhopal."
         path="/blog"
-        jsonLd={[clinicSchema("/blog")]}
+        imageAlt="Wellness journal by Dr. Aarti Sen at ShushrutamVed Care, Bhopal"
+        jsonLd={[clinicSchema()]}
       />
 
       <PageHero
@@ -123,6 +126,8 @@ export default function Blog() {
                   srcSet={`${ik(featured.image, 560)} 560w, ${ik(featured.image, 1120)} 1120w`}
                   sizes="(min-width: 1024px) 560px, calc(100vw - 48px)"
                   alt={featured.imageAlt}
+                  width={1120}
+                  height={700}
                   decoding="async"
                   fetchPriority="high"
                   className="h-full min-h-72 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] lg:min-h-full"

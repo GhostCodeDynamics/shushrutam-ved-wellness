@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { SITE_IMAGES, ik } from "@/lib/media";
 import { AppointmentForm } from "@/components/site/AppointmentForm";
 import { BotanicalFloat } from "@/components/site/BotanicalFloat";
+import { ClinicGallery } from "@/components/site/ClinicGallery";
 import { Eyebrow, SectionHeading } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
 import { Seo } from "@/components/site/Seo";
@@ -790,6 +791,7 @@ export default function Home() {
       <Hero />
       <TrustBar />
       <Approach />
+      <ClinicGallery variant="home" />
       <Programs />
       <Concerns />
       <Steps />

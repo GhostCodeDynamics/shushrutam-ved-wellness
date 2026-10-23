@@ -423,6 +423,32 @@
   }
 }
 
+.clinic-photo {
+  transform: scale(0.975);
+  transition:
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s ease;
+}
+
+.reveal[data-visible="true"] .clinic-photo {
+  transform: scale(1);
+}
+
+@keyframes clinic-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.055);
+  }
+}
+
+.clinic-photo-kenburns {
+  animation: clinic-kenburns 18s ease-in-out infinite alternate;
+  transform-origin: 50% 55%;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -431,6 +457,13 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .clinic-photo {
+    transform: none;
+    transition: none;
+  }
+  .clinic-photo-kenburns {
+    animation: none;
   }
   *,
   *::before,

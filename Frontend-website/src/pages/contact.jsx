@@ -1,6 +1,7 @@
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { AppointmentForm } from "@/components/site/AppointmentForm";
+import { ClinicGallery } from "@/components/site/ClinicGallery";
 import { PageHero } from "@/components/site/PageHero";
 import { Eyebrow } from "@/components/site/Premium";
 import { Reveal } from "@/components/site/Reveal";
@@ -98,6 +99,7 @@ export default function Contact() {
                 Kolar Road, Bhopal
               </div>
             </div>
+            <ClinicGallery variant="contact" />
             <div className="rounded-[1.8rem] border border-border bg-card p-7 shadow-soft">
               <h3 className="flex items-center gap-2 font-display text-xl">
                 <Clock className="size-5 text-brand" aria-hidden /> Opening hours

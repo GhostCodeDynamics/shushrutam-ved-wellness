@@ -16,6 +16,13 @@ export const SITE_IMAGES = {
   aboutNature: `${IK}/site/about-nature_EC85tk31o.jpg`,
   naturopathy: `${IK}/site/naturopathy-consultation_m5FRurF-w.jpg`,
   leafTexture: `${IK}/site/leaf-texture_udC7EMZeE.jpg`,
+  clinicReception: `${IK}/site/clinic-reception_lOb3hXBUx.png`,
+  clinicConsultation: `${IK}/site/clinic-consultation_IpI5XhfIMl.png`,
+  // Remaining clinic photos are placeholders until the files are uploaded to ImageKit.
+  clinicTherapy: `${IK}/site/clinic-therapy_Yt84NcVa.jpg`,
+  clinicDispensary: `${IK}/site/clinic-herb-dispensary_Hs26GfOk.jpg`,
+  clinicWaiting: `${IK}/site/clinic-waiting_Kd73QpLm.jpg`,
+  clinicEntrance: `${IK}/site/clinic-entrance_Bn92MdQs.jpg`,
 };
 
 /**
